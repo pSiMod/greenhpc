@@ -1,0 +1,315 @@
+<div >
+    <div class="">
+        <form role="form" class="form-horizontal" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="existingMetaProfile" class="col-md-6 control-label">Use Existing Meta-profiles</label>
+                        <div class="col-md-6">
+                            <select class="form-control"  id="existingMetaProfile" name="existingMetaProfile" placeholder="Existing Profiles">
+                                <option value="0">Please select...</option>
+                                <option selected value="Titan">Titan</option>
+                                <option value="Create New Profile">Create New Profile</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row panel-padding">          <!--Skelition Parameters Block-->
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Skeleton Parameters</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group col-md-6">
+                            <label for="analyticsWorkflow" class="col-md-4 control-label">Analytics Workflow</label>
+                            <div class="col-md-8">
+                                <select class="form-control"  id="analyticsWorkflow" name="analyticsWorkflow" placeholder="Analytics Workflow">
+                                    <option value="0">Please select...</option>
+                                    <option selected value="Toplogy analytics">Topology analytics</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="dataAnalyticsType" class="col-md-4 control-label">Data Analytics Type</label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="dataAnalyticsType" name="dataAnalyticsType" placeholder="Data Analytics Type">
+                                    <option value="0">Please select...</option>
+                                    <option selected value="In-situ">In-situ</option>
+                                    <option disabled="" value="2">In-transit</option>
+                                    <option disabled="" value="3">Hybrid</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!--End of Skeleton Parameters Block-->
+            <div class="row">
+                <div class="col-sm-4 panel-padding" > <!--Architecture Parameters Block-->
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Architecture Parameters</h3>
+                        </div>
+                        <div class="panel-body panel-scroll">
+                            <div class="form-group">
+                                <label for="numberOfCores" class="col-lg-6 control-label">CPU Cores</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text" value="0" class="form-control" id="numberOfCores" name="numberOfCores" placeholder="#">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="coresPerNode" class="col-lg-6 control-label">Cores per Node</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="coresPerNode" name="coresPerNode" placeholder="#">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cpuIdlePower" class="col-lg-6 control-label">CPU Idle power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text" value="0"  class="form-control" id="cpuIdlePower" name="cpuIdlePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cpuActivePower" class="col-lg-6 control-label">CPU Active Power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="cpuActivePower" name="cpuActivePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="memIdlePower" class="col-lg-6 control-label">Memory Idle Power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="memIdlePower" name="memIdlePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="memActivePower" class="col-lg-6 control-label">Memory Active Power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="memActivePower" name="memActivePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nicIdlePower" class="col-lg-6 control-label">NIC Idle Power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="nicIdlePower" name="nicIdlePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nicActivePower" class="col-lg-6 control-label">NIC Active Power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="nicActivePower" name="nicActivePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="miscActivePower" class="col-lg-6 control-label">Misc Active Power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="miscActivePower" name="miscActivePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label for="networkType" class="col-lg-6 control-label">Network Type</label>
+                                <div class="col-lg-6">
+                                    <label class="">
+                                        <input type="radio" selected name="networkType" id="networkType" value="Gemini"> Gemini
+                                    </label>
+                                    <label class="">
+                                        <input type="radio" name="networkType" id="networkType" value="Gemini"> Infiniband
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-offset-4">
+                                <div class="form-group ">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default" type="button" name="ArchAdd">Add <span class="glyphicon glyphicon-plus icon-success"></span></button>
+                                        <button class="btn btn-default" type="button" name="ArchDelete">Delete <span class="glyphicon glyphicon-remove"></span></button>
+                                    </div>
+                                </div>        
+                            </div>
+                        </div>
+                    </div>
+                </div><!--End of Architecture Parameters-->
+                <div class="col-sm-4 panel-padding" >            <!--Start of Coddesign Params-->
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Co-design Parameters</h3>
+                        </div>
+                        <div class="panel-body panel-scroll">
+                            <div class="form-group">
+                                <label for="mpiRanksNode" class="col-lg-6 control-label">MPI Ranks Per Node</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text" value="0" class="form-control" id="mpiRanksNode" name="mpiRanksNode" placeholder="#">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="mpiRankMappingPolicy" class="col-lg-6 control-label">MPI rank mapping Policy</label>
+                                <div class="col-lg-6">
+                                    <label class="">
+                                        <input type="radio" name="mpiRankMappingPolicy" id="mpiRankMappingPolicy" value="Consecutive"> Consecutive
+                                    </label>
+                                    <label class="">
+                                        <input type="radio" name="mpiRankMappingPolicy" id="mpiRankMappingPolicy" value="Random"> Random
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-offset-4">
+                                <div class="form-group ">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default" type="button" name="designAdd">Add <span class="glyphicon glyphicon-plus icon-success"></span></button>
+                                        <button class="btn btn-default" type="button" name="designDelete">Delete <span class="glyphicon glyphicon-remove"></span></button>
+                                    </div>
+                                </div>        
+                            </div>
+                        </div>
+                    </div>
+                </div><!--End of Co-design Parameters-->
+                <div class="col-sm-4 panel-padding" > <!--Start of Application Params-->
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Application Parameters</h3>
+                        </div>
+                        <div class="panel-body panel-scroll">
+                            <div class="form-group">
+                                <label for="executionTime" class="col-lg-6 control-label">Execution Time(s)</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text" value="0" class="form-control" id="executionTime" name="executionTime" placeholder="#">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cpuActivity" class="col-lg-6 control-label">CPU Activity(1-100)</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text" value="0" class="form-control" id="cpuActivity" name="cpuActivity" placeholder="1-100">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="memActivity" class="col-lg-6 control-label">Memory Activity(1-100)</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text" value="0" class="form-control" id="memActivity" name="memActivity" placeholder="1-100">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="mpiActivityFile" class="col-lg-6 control-label">MPI Activity File</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="file" id="mpiActivityFile" name="mpiActivityFile">
+                                        <p class="help-block">(Source_MPI_Rank, Destination_MPI_Rank, data_size)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-offset-4">
+                                <div class="form-group ">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default" type="button" name="appAdd">Add <span class="glyphicon glyphicon-plus icon-success"></span></button>
+                                        <button class="btn btn-default" type="button" name="appDelete">Delete <span class="glyphicon glyphicon-remove"></span></button>
+                                    </div>
+                                </div>        
+                            </div>
+                        </div>
+                    </div><!--End of Application Parameter-->
+                </div>
+                <div class ="row"><!--Start of User Action Params-->
+                    <div class="form-group">
+                        <div class="col-md-4 col-md-offset-5">
+                            <input type="submit" class="btn btn-success" value="Save & Process" />
+                            <input type="submit" class="btn btn-success" value="Process"/>
+                        </div>
+                    </div>
+                </div><!--End of User Action Params-->
+            </div>
+        </form>
+        <div class="row">           <!-- Start of Results Section-->
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Results</h3>
+                </div>
+                <div class="panel-body">
+                    <?php echo $message?>
+                    <?php echo "command:".$command?>
+                     <?php echo $pathname?>
+                    <?php echo $mpiFileStatus?>
+                    <?php echo $status?>
+                    <table>
+                        <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                        </tr>
+                        <?php
+                            foreach($rawBody as $key => $value)
+                            {?>
+                        <tr>
+                            <td><?php echo $key?></td>
+                            <td><?php echo $value?></td>
+                        </tr>     
+                            <?php }
+                            
+                        ?>
+                        </table>
+                </div>
+                
+            </div>
+        </div><!--End of Results Section-->
+    </div>
+</div>

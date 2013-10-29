@@ -1,0 +1,174 @@
+<div ng-controller="formController" >
+
+    <div class="">
+        <form role="form" class="form-horizontal">
+            <div class="row skeleton-params">
+                <!--Skelition Parameters Block-->
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="analyticsWorkflow" class="col-md-4 control-label">Analytics Workflow</label>
+                        <div class="col-md-8">
+                            <select class="form-control"  id="analyticsWorkflow" placeholder="Analytics Workflow">
+                                <option selected value="0">Please select...</option>
+                                <option value="1">Topology analytics</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="dataAnalyticsType" class="col-md-4 control-label">Data Analytics Type</label>
+                        <div class="col-md-8">
+                            <select class="form-control" id="dataAnalyticsType" placeholder="Data Analytics Type">
+                                <option selected  value="0">Please select...</option>
+                                <option value="1">In-situ</option>
+                                <option disabled="" value="2">In-transit</option>
+                                <option disabled="" value="3">Hybrid</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!--End of Skeleton Parameters Block-->
+            </div>
+            <!--Architecture Parameters Block-->
+            <div class="row arch-params">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="numberOfCores" class="col-lg-6 control-label">CPU Cores</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="numberOfCores" placeholder="#">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="coresPerNode" class="col-lg-6 control-label">Cores per Node</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="coresPerNode" placeholder="#">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="cpuIdlePower" class="col-lg-6 control-label">CPU Idle power</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="cpuIdlePower" placeholder="Power(W)">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cpuActivePower" class="col-lg-6 control-label">CPU Active Power</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="cpuActivePower" placeholder="Power(W)">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="memIdlePower" class="col-lg-6 control-label">Memory Idle Power</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="memIdlePower" placeholder="Power(W)">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="memActivePower" class="col-lg-6 control-label">Memory Active Power</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="memActivePower" placeholder="Power(W)">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="nicIdlePower" class="col-lg-6 control-label">NIC Idle Power</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="nicIdlePower" placeholder="Power(W)">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="nicActivePower" class="col-lg-6 control-label">NIC Active Power</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="nicActivePower" placeholder="Power(W)">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="miscActivePower" class="col-lg-6 control-label">Misc Active Power</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="miscActivePower" placeholder="Power(W)">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="networkType" class="col-lg-6 control-label">Network Type</label>
+                        <div class="col-lg-6">
+                            <label class="">
+                                <input type="radio" name="networkType" id="networkType" value="Gemini"> Gemini
+                            </label>
+                            <label class="">
+                                <input type="radio" name="networkType" id="networkType" value="Gemini"> Infiniband
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row codesign-params">
+                <div class ="row">
+                    <div class="form-group col-md-6">
+                        <label for="mpiRanksNode" class="col-lg-6 control-label">MPI Ranks Per Node</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="mpiRanksNode" placeholder="#">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="mpiRankMappingPolicy" class="col-lg-6 control-label">MPI rank mapping Policy</label>
+                        <div class="col-lg-6">
+                            <label class="">
+                                <input type="radio" name="mpiRankMappingPolicy" id="mpiRankMappingPolicy" value="Consecutive"> Consecutive (default)
+                            </label>
+                            <label class="">
+                                <input type="radio" name="mpiRankMappingPolicy" id="mpiRankMappingPolicy" value="Random"> Random
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row app-params" >
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="executionTime" class="col-lg-6 control-label">Execution Time(s)</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="executionTime" placeholder="#">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="cpuActivity" class="col-lg-6 control-label">CPU Activity(1-100)</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="cpuActivity" placeholder="1-100">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="form-group col-md-6">
+                        <label for="mpiActivityFile" class="col-lg-6 control-label">MPI Activity File</label>
+                        <div class="col-lg-6">
+                        <input type="file" id="mpiActivityFile">
+                        <p class="help-block">(Source_MPI_Rank, Destination_MPI_Rank, data_size)</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="memActivity" class="col-lg-6 control-label">Memory Activity(1-100)</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" id="memActivity" placeholder="1-100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class ="row">
+                <div class="col-md-2 col-md-offset-5">
+                <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>

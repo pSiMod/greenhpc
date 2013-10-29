@@ -1,37 +1,168 @@
-body {
-    padding-top: 60px;
-    padding-bottom: 40px;
+.ghpc-title{
+    color:#309900;
+    font-weight: 700;
+        text-align:center;
+}
+.ghpc-header{
+}
+.ghpc-subheading{
+text-align: center;
 }
 
-.zf-green {
-    color: #68b604;
+.panel-scroll{
+    height:260px;
+    overflow-x: hidden;
+    overflow-y:auto;
 }
 
-.btn-success {
-  background-color: #57a900;
-  background-image: -moz-linear-gradient(top, #70d900, #57a900);
-  background-image: -ms-linear-gradient(top, #70d900, #57a900);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#70d900), to(#57a900));
-  background-image: -webkit-linear-gradient(top, #70d900, #57a900);
-  background-image: -o-linear-gradient(top, #70d900, #57a900);
-  background-image: linear-gradient(top, #70d900, #57a900);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#70d900', endColorstr='#57a900', GradientType=0);
+.arch-panel-padding{
+    padding-right: 5px;
+    padding-left:5px;
+}
+.codesign-panel-padding{
+    padding-right: 5px;
+    padding-left:5px;
+}
+.application-panel-padding{
+    padding-right: 5px;
+    padding-left:5px;
+}
+.panel-padding{
+    padding-right: 5px;
+    padding-left:5px;
 }
 
-.btn-success:hover,
-.btn-success:active,
-.btn-success.active,
-.btn-success.disabled,
-.btn-success[disabled] {
-  background-color: #57a900;
-}
-
-.btn-success:active, .btn-success.active {
-  background-color: #57a900;
-}
-
-div.container a.brand {
-    background: url("../img/zf2-logo.png") no-repeat scroll 0 10px transparent;
+.params-container
+{
+    border-color: #DDDDDD;
+    border-radius: 4px 4px 0 0;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: none;
+    padding: 45px 15px 15px;
+    margin-top: 12px;
+    position: relative;
     margin-left: 0;
-    padding: 8px 20px 12px 40px;
+    margin-right: 0;
+}
+
+.params-container:after {
+    color: #309900;
+    content: "Simulation Parameters";
+    font-size: 14px;
+    font-weight: bold;
+    left: 15px;
+    letter-spacing: 1px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 15px;
+}
+
+
+.skeleton-params
+{
+    border-color: #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: none;
+    padding: 45px 15px 15px;
+    margin: 12px 12px 12px 12px;
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.skeleton-params:after {
+    color: #309900;
+    content: "Skeliton Parameters";
+    font-size: 12px;
+    font-weight: bold;
+    left: 15px;
+    letter-spacing: 1px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 15px;
+}
+
+.arch-params
+{
+    border-color: #DDDDDD;
+border-radius: 4px 4px 4px 4px;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: none;
+    padding: 45px 15px 15px;
+    margin: 12px 12px 12px 12px;
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.arch-params:after {
+    color: #309900;
+    content: "Architecture Parameters";
+    font-size: 12px;
+    font-weight: bold;
+    left: 15px;
+    letter-spacing: 1px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 15px;
+}
+
+.codesign-params
+{
+    border-color: #DDDDDD;
+ border-radius: 4px 4px 4px 4px;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: none;
+    padding: 45px 15px 15px;
+    margin: 12px 12px 12px 12px;
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.codesign-params:after {
+    color: #309900;
+    content: "Co-Design Parameters";
+    font-size: 12px;
+    font-weight: bold;
+    left: 15px;
+    letter-spacing: 1px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 15px;
+}
+
+.app-params
+{
+    border-color: #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: none;
+    padding: 45px 15px 15px;
+    margin: 12px 12px 12px 12px;
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.app-params:after {
+    color: #309900;
+    content: "Application Parameters";
+    font-size: 12px;
+    font-weight: bold;
+    left: 15px;
+    letter-spacing: 1px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 15px;
+}
+.accordion-toggle > .panel-heading {
+    background-image: linear-gradient(to bottom, #F5F5F5 0px, #E8E8E8 100%);
+    background-repeat: repeat-x;
 }

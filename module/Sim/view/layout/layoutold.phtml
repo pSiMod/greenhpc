@@ -1,0 +1,66 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en" ng-app>
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('GHPC - Green High Performance Computing ')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php
+        echo $this->headMeta()
+                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?php
+        echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/rfavicon.ico'))
+                ->prependStylesheet($this->basePath() . '/css/style.css')
+                ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+                ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css')
+                ->prependStylesheet($this->basePath() . '/css/justified-nav.css')
+        ?>
+
+        <!-- Scripts -->
+        <?php
+        echo $this->headScript()
+                ->prependFile($this->basePath() . '/js/bootstrap.min.js')
+                ->prependFile($this->basePath() . '/js/jquery.min.js')
+                ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                ->prependFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+        ;
+        ?>
+        <script src="http://code.angularjs.org/1.2.0-rc.2/angular.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+
+      <div class="masthead">
+          <div class="ghpc-header">
+            <h3 class="ghpc-title">Green High Performance Computing(Green-HPC)</br></h3>
+            <h3 class="text-muted ghpc-subheading">Rutgers Informatic Center| Rutgers University</h3>
+        </div>
+        <ul class="nav nav-justified" style="font-size: 12px">
+          <li class="active"><a href="/">Simulate</a></li>
+          <li><a href="/Sim/metaprofile">Meta-Skeleton Profiles</a></li>
+          <li><a href="">Previous Results</a></li>
+          <li><a href="#">Archives</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </div>
+
+        <div class="container">
+            <?php echo $this->content; ?>
+            <hr>
+            <footer>
+                <p align="center"><img src="img/greenhpc.png" height="65"><a name="GreenHPC"></a></p>
+                <h3>Sponsors</h3>
+                <p>
+                    The research at GreenHPC is sponsored by the National Science Foundation and members of the <a href="http://www.nsfcac.org/">Cloud and Autonomic Computing Center</a>.
+                </p>
+                <p align="center"><img src="img/nsf.jpg" height="85"><img src="img/cac.jpg" height="40"><img src="img/rdi2.png" height="60"></p>
+                <p align="center"><a href="http://nsfcac.rutgers.edu/GreenHPC/">Contact us</a>| © 2013 Ivan Rodero</p>
+            </footer>
+        </div> <!-- /container -->
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>
