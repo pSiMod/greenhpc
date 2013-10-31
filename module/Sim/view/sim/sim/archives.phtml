@@ -1,9 +1,6 @@
-<div  >
-
+<div >
     <div class="">
-
-        <form role="form" class="form-horizontal" method="POST">
-
+        <form role="form" class="form-horizontal" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6 col-md-offset-2">
                     <div class="form-group">
@@ -47,26 +44,112 @@
                     </div>
                 </div>
             </div> <!--End of Skeleton Parameters Block-->
-
             <div class="row">
-                <div class="col-sm-4 panel-padding" ng-controller="archCtrl"> <!--Architecture Parameters Block-->
+                <div class="col-sm-4 panel-padding" > <!--Architecture Parameters Block-->
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">Architecture Parameters</h3>
                         </div>
-                        <div class="panel-body panel-scroll">                         
-                            <div class="form-group" ng-repeat="param in archParams">
-                                <label for="{{param.name}}" class="col-lg-6 control-label">{{param.label}}</label>
+                        <div class="panel-body panel-scroll">
+                            <div class="form-group">
+                                <label for="numberOfCores" class="col-lg-6 control-label">CPU Cores</label>
                                 <div class="col-lg-6">
                                     <div class="input-group">
-                                        <input type="{{param.type}}" value="0" class="form-control" id="{{param.name}}" name="{{param.name}}" placeholder="#">
-                                        <span class="input-group-addon" ng-click="remove($event)">
-                                            <span class="glyphicon glyphicon-remove" ></span>
+                                        <input type="text" value="0" class="form-control" id="numberOfCores" name="numberOfCores" placeholder="#">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
                                         </span>
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label for="coresPerNode" class="col-lg-6 control-label">Cores per Node</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="coresPerNode" name="coresPerNode" placeholder="#">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cpuIdlePower" class="col-lg-6 control-label">CPU Idle power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text" value="0"  class="form-control" id="cpuIdlePower" name="cpuIdlePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cpuActivePower" class="col-lg-6 control-label">CPU Active Power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="cpuActivePower" name="cpuActivePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="memIdlePower" class="col-lg-6 control-label">Memory Idle Power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="memIdlePower" name="memIdlePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="memActivePower" class="col-lg-6 control-label">Memory Active Power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="memActivePower" name="memActivePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nicIdlePower" class="col-lg-6 control-label">NIC Idle Power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="nicIdlePower" name="nicIdlePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nicActivePower" class="col-lg-6 control-label">NIC Active Power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="nicActivePower" name="nicActivePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="miscActivePower" class="col-lg-6 control-label">Misc Active Power</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text"  value="0" class="form-control" id="miscActivePower" name="miscActivePower" placeholder="Power(W)">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group ">
                                 <label for="networkType" class="col-lg-6 control-label">Network Type</label>
                                 <div class="col-lg-6">
@@ -78,32 +161,34 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md-offset-6">
-                                <a data-toggle="modal" href="#archModel" class="btn btn-default">Add <span class="glyphicon glyphicon-plus icon-success"></span></a>
+                            <div class="col-md-offset-4">
+                                <div class="form-group ">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default" type="button" name="ArchAdd">Add <span class="glyphicon glyphicon-plus icon-success"></span></button>
+                                        <button class="btn btn-default" type="button" name="ArchDelete">Delete <span class="glyphicon glyphicon-remove"></span></button>
+                                    </div>
+                                </div>        
                             </div>
                         </div>
                     </div>
-
-
                 </div><!--End of Architecture Parameters-->
-                <div class="col-sm-4 panel-padding" ng-controller="codesignCtrl">            <!--Start of Coddesign Params-->
+                <div class="col-sm-4 panel-padding" >            <!--Start of Coddesign Params-->
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">Co-design Parameters</h3>
                         </div>
                         <div class="panel-body panel-scroll">
-                            <div class="form-group" ng-repeat="param in codesignParams">
-                                <label for="{{param.name}}" class="col-lg-6 control-label">{{param.label}}</label>
+                            <div class="form-group">
+                                <label for="mpiRanksNode" class="col-lg-6 control-label">MPI Ranks Per Node</label>
                                 <div class="col-lg-6">
                                     <div class="input-group">
-                                        <input type="{{param.type}}" value="0" class="form-control" id="{{param.name}}" name="{{param.name}}" placeholder="#">
-                                        <span class="input-group-addon" >
-                                            <span class="glyphicon glyphicon-remove" ng-click="remove($event)"></span>
+                                        <input type="text" value="0" class="form-control" id="mpiRanksNode" name="mpiRanksNode" placeholder="#">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
                                         </span>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="mpiRankMappingPolicy" class="col-lg-6 control-label">MPI rank mapping Policy</label>
                                 <div class="col-lg-6">
@@ -115,31 +200,56 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class="col-md-offset-6">
-                                <a data-toggle="modal" href="#codesignModel" class="btn btn-default">Add <span class="glyphicon glyphicon-plus icon-success"></span></a>
+                            <div class="col-md-offset-4">
+                                <div class="form-group ">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default" type="button" name="designAdd">Add <span class="glyphicon glyphicon-plus icon-success"></span></button>
+                                        <button class="btn btn-default" type="button" name="designDelete">Delete <span class="glyphicon glyphicon-remove"></span></button>
+                                    </div>
+                                </div>        
                             </div>
                         </div>
                     </div>
-
                 </div><!--End of Co-design Parameters-->
-                <div class="col-sm-4 panel-padding" ng-controller="appCtrl"> <!--Start of Application Params-->
+                <div class="col-sm-4 panel-padding" > <!--Start of Application Params-->
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">Application Parameters</h3>
                         </div>
                         <div class="panel-body panel-scroll">
-                            <div class="form-group" ng-repeat="param in appParams">
-                                <label for="{{param.name}}" class="col-lg-6 control-label">{{param.label}}</label>
+                            <div class="form-group">
+                                <label for="executionTime" class="col-lg-6 control-label">Execution Time(s)</label>
                                 <div class="col-lg-6">
                                     <div class="input-group">
-                                        <input type="{{param.type}}" value="0" class="form-control" id="{{param.name}}" name="{{param.name}}" placeholder="#">
-                                        <span class="input-group-addon" >
-                                            <span class="glyphicon glyphicon-remove" ng-click="remove($event)"></span>
+                                        <input type="text" value="0" class="form-control" id="executionTime" name="executionTime" placeholder="#">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
                                         </span>
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label for="cpuActivity" class="col-lg-6 control-label">CPU Activity(1-100)</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text" value="0" class="form-control" id="cpuActivity" name="cpuActivity" placeholder="1-100">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="memActivity" class="col-lg-6 control-label">Memory Activity(1-100)</label>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input type="text" value="0" class="form-control" id="memActivity" name="memActivity" placeholder="1-100">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="mpiActivityFile" class="col-lg-6 control-label">MPI Activity File</label>
                                 <div class="col-lg-6">
@@ -149,13 +259,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-offset-6">
-                                <a data-toggle="modal" href="#appModel" class="btn btn-default">Add <span class="glyphicon glyphicon-plus icon-success"></span></a>
+                            <div class="col-md-offset-4">
+                                <div class="form-group ">
+                                    <div class="btn-group">
+                                        <button class="btn btn-default" type="button" name="appAdd">Add <span class="glyphicon glyphicon-plus icon-success"></span></button>
+                                        <button class="btn btn-default" type="button" name="appDelete">Delete <span class="glyphicon glyphicon-remove"></span></button>
+                                    </div>
+                                </div>        
                             </div>
                         </div>
                     </div><!--End of Application Parameter-->
                 </div>
-
                 <div class ="row"><!--Start of User Action Params-->
                     <div class="form-group">
                         <div class="col-md-4 col-md-offset-5">
@@ -164,106 +278,38 @@
                         </div>
                     </div>
                 </div><!--End of User Action Params-->
-
-
             </div>
         </form>
-
         <div class="row">           <!-- Start of Results Section-->
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">Results</h3>
                 </div>
                 <div class="panel-body">
-                    <?php echo $message ?>
+                    <?php echo $message?>
+                    <?php echo "command:".$command?>
+                     <?php echo $pathname?>
+                    <?php echo $mpiFileStatus?>
+                    <?php echo $status?>
                     <table>
                         <tr>
-                            <th>Parameter</th>
-                            <th>Value</th>
+                        <th>Parameter</th>
+                        <th>Value</th>
                         </tr>
                         <?php
-                        foreach ($rawBody as $key => $value) {
-                            ?>
-                            <tr>
-                                <td><?= $key ?></td>
-                                <td><?= $value ?></td>
-                            </tr>     
-                        <?php }
+                            foreach($rawBody as $key => $value)
+                            {?>
+                        <tr>
+                            <td><?php echo $key?></td>
+                            <td><?php echo $value?></td>
+                        </tr>     
+                            <?php }
+                            
                         ?>
-                    </table>
+                        </table>
                 </div>
-
+                
             </div>
         </div><!--End of Results Section-->
-
-        <div class="modal fade" id="archModel" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true" ng-controller="archCtrl">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">New Architecture Parameter</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="newArchLabel" class="col-lg-6 control-label">New Parameter Label : </label>
-                            <div class="col-lg-6">
-                                <input type="newArchLabel" ng-model="newArchLabel"  id="newArchLabel" name="newArchLabel" placeholder="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" ng-click="add($event)">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="modal fade" id="codesignModel" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true" ng-controller="codesignCtrl">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">New Co-Design Parameter</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="newcodesignLabel" class="col-lg-6 control-label">New Parameter Label : </label>
-                            <div class="col-lg-6">
-                                <input type="newcodesignLabel" ng-model="newcodesignLabel"  id="newArchLabel" name="newcodesignLabel" placeholder="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" ng-click="add($event)">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="modal fade" id="appModel" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true" ng-controller="appCtrl">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">New Application Parameter</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="newAppLabel" class="col-lg-6 control-label">New Parameter Label : </label>
-                            <div class="col-lg-6">
-                                <input type="newAppLabel" ng-model="newAppLabel"  id="newArchLabel" name="newAppLabel" placeholder="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" ng-click="add($event)">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>

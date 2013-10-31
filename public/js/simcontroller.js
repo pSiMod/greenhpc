@@ -5,7 +5,7 @@
 
 var simapp = angular.module('SimCtrlApp',[]);
 
-simapp.controller('archCtrl',function archCtrl($scope){
+simapp.controller('paramsCtrl',function archCtrl($scope){
     
     $scope.archParams = [{'name':'numberOfCores','label':'CPU Cores','type':'text'},
 {'name':'coresPerNode','label':'Cores per Node','type':'text'},
@@ -18,50 +18,52 @@ simapp.controller('archCtrl',function archCtrl($scope){
 {'name':'miscActive Power','label':'Misc Active Power','type':'text'}
 ];
 
-$scope.add = function(e){
-    newparam = $scope.newArchLabel.replace(/\s/g,'');
-    $scope.archParams.push({name:newparam,label:$scope.newArchLabel,type:'text'});
-    $('#archModel').modal('hide');
-    $scope.newArchLabel="";
-    $scope.apply();
-};
-
-$scope.remove=function(e){
-    alert(' Arch remove');
-};
-    
-});
-
-
-simapp.controller('codesignCtrl',function codesignCtrl($scope){
-    
     $scope.codesignParams = [{'name':'mpiRanksNode','label':'MPI Ranks Per Node','type':'text'}
 ];
 
-$scope.add = function(e){
-    alert($scope.newcodesignLabel);
-};
-
-$scope.remove=function(e){
-    alert('Codesign remove');
-};
-    
-});
-
-
-
-simapp.controller('appCtrl',function appCtrl($scope){
-    
     $scope.appParams = [{'name':'executionTime','label':'Execution Time(s)','type':'text'},
 {'name':'cpuActivity','label':'CPU Activity(1-100)','type':'text'},
 {'name':'memActivity','label':'Memory Activity(1-100)','type':'text'}
 ];
-    $scope.add = function(e){
-    alert($scope.newAppLabel);
+
+
+
+$scope.addArchParam = function(){
+    newparam = $scope.newArchLabel.replace(/\s/g,'');
+    $scope.archParams.push({name:newparam,label:$scope.newArchLabel,type:'text'});
+    $('#archModel').modal('hide');
+    $scope.newArchLabel="";
+
 };
 
-$scope.remove=function(e){
-    alert('App remove');
+$scope.removeArchParam =function(param){
+    index = $scope.archParams.indexOf(param);
+    $scope.archParams.splice(index,1);
+};
+
+$scope.addCoDesignParam = function(){
+    newparam = $scope.newcodesignLabel.replace(/\s/g,'');
+    $scope.codesignParams.push({name:newparam,label:$scope.newcodesignLabel,type:'text'});
+    $('#codesignModel').modal('hide');
+    $scope.newcodesignLabel="";
+
+};
+
+$scope.removeCoDesignParam =function(param){
+    index = $scope.codesignParams.indexOf(param);
+    $scope.codesignParams.splice(index,1);
+};
+
+$scope.addAppParam = function(){
+    newparam = $scope.newAppLabel.replace(/\s/g,'');
+    $scope.appParams.push({name:newparam,label:$scope.newAppLabel,type:'text'});
+    $('#appModel').modal('hide');
+    $scope.newAppLabel="";
+
+};
+
+$scope.removeAppParam =function(param){
+    index = $scope.appParams.indexOf(param);
+    $scope.appParams.splice(index,1);
 };
 });
-

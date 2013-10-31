@@ -9,7 +9,8 @@ class SimController extends AbstractActionController {
 
     public function indexAction() {
         $view = new ViewModel();
-        $view->message = "inside the post body";
+        $success = true;
+        $errorMessage = "No Errors";
         $request = $this->getRequest();
 
         //if it is a post request
@@ -22,55 +23,67 @@ class SimController extends AbstractActionController {
             $dirname = date('M-d-Y');
             $dirpath = $simulationPath . '/' . $dirname;
             if (!is_dir($dirpath)) {
-                $status = mkdir($dirpath, 0777);
-                if ($status)
-                    $view->status = 'true';
-                else
-                    $view->status = 'false';
+                $success = mkdir($dirpath, 0777);
             }
+                
+                if ($success) {
 
-            //save the uploaded file into the directory. If the file already exists
-            //then overright it
-            $mpiFileStatus = "";
-            $mpiFilePath="";
-            if ($_FILES["mpiActivityFile"]["error"] > 0) {
-                $mpiFileStatus["Error"] = $_FILES["mpiActivityFile"]["error"];
-            } else {
+                    //save the uploaded file into the directory. If the file already exists
+                    //then overright it
+                    
+                    if ($_FILES["mpiActivityFile"]["error"] > 0) {
+                        $success = false;
+                        $errorMessage = "Please upload MPI Activity File";
+                    } else {
 
-                $mpiFilePath = $dirpath . '/' . $_FILES['mpiActivityFile']['name'];
-                $mpiFileStatus = $mpiFilePath;
-                if (file_exists($mpiFilePath)) {
-                    move_uploaded_file($_FILES['mpiActivityFile'][tmp_name], $mpiFilePath);
-                    $mpiFileStatus = 'Updated in ' . $mpiFilePath;
+                        $mpiFilePath = $dirpath . '/' . $_FILES['mpiActivityFile']['name'];
+                        $mpiFileStatus = $mpiFilePath;
+                        if (file_exists($mpiFilePath)) {
+                            move_uploaded_file($_FILES['mpiActivityFile'][tmp_name], $mpiFilePath);
+                        } else {
+                            move_uploaded_file($_FILES['mpiActivityFile'][tmp_name], $mpiFilePath);
+                        }
+
+                        // convert the posted data into comma seperted name:value pairs.
+                        $rawbody = $_POST;
+                        $params = "";
+                        foreach ($rawbody as $key => $value) {
+                            $params .= $key . ':' . $value . ',';
+                        }
+                        
+                        $params = substr($params, 0, strlen($params)-2);
+                        // create a params.dat file which will contain the above generted
+                        //value pairs.
+                        $paramsPath .= $dirpath . '/params.dat';
+                        $file = fopen($paramsPath, 'w');
+                        fwrite($file, $params);
+                        fclose($file);
+
+                        $simlocation = realpath($_SERVER['DOCUMENT_ROOT'] . '/../bin');
+                        $simlocation .= "/./simulator ";
+
+                        $command = $simlocation . $paramsPath . " " . $mpiFilePath;
+                        
+                        $output = array();
+                        exec($command, $output);
+                        if (count($output) > 1)
+                        {
+                            $view->output= $output;    
+                        }
+                        else
+                        {
+                            $success =FALSE;
+                            $errorMessage = "Failed while executing binary :". $output[0];
+                        }
+                    }
                 } else {
-                    move_uploaded_file($_FILES['mpiActivityFile'][tmp_name], $mpiFilePath);
-                    $mpiFileStatus = 'stored in ' . $mpiFilePath;
+                    $errorMessage = 'Unable to create folder on server. Permission denied';
                 }
             }
+        
+                    $view->success = $success;
+                    $view->errorMessage = $errorMessage;
 
-            // convert the posted data into comma seperted name:value pairs.
-            $view->mpiFileStatus = $mpiFileStatus;
-            $rawbody = $_POST;
-            $params = "";
-            foreach ($rawbody as $key => $value) {
-                $params .= $key . ':' . $value . ',';
-            }
-            // create a params.dat file which will contain the above generted
-            //value pairs.
-            $paramsPath .= $dirpath . '/params.dat';
-            $file = fopen($paramsPath, 'w');
-            fwrite($file, $params);
-            fclose($file);
-            
-            $simlocation = realpath($_SERVER['DOCUMENT_ROOT'].'/../bin');
-            $simlocation .= "/./simulator ";
-            
-            $command = $simlocation . $paramsPath ." " . $mpiFilePath;
-            $view->command = $command;
-            $output = array();
-            exec($command,$output);
-            $view->rawBody = $output;
-        }
         return $view;
     }
 

@@ -1,0 +1,1 @@
+existingMetaProfile:Titan,analyticsWorkflow:Toplogy analytics,dataAnalyticsType:In-situ,numberOfCores:12,coresPerNode:12,cpuIdlePower:2,cpuActivePower:12,memIdlePower:2,memActivePower:12,nicIdlePower:12,nicActivePower:12,miscActivePower:2,networkType:Gemini,mpiRanksNode:0,mpiRankMappingPolicy:Consecutive,executionTime:0,cpuActivity:0,memActivity:0,
