@@ -20,66 +20,66 @@
         ?>
 
 
-<?php
-echo $this->headScript()    
-        ->prependFile($this->basePath() . '/js/simcontroller.js')
-        ->prependFile($this->basePath() . '/js/bootstrap.min.js')
-        ->prependFile($this->basePath() . '/js/angular.js')
-        ->prependFile($this->basePath() . '/js/jquery.min.js')
-        ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-        ->prependFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-;
-?>
+        <?php
+        echo $this->headScript()
+                ->prependFile($this->basePath() . '/js/simcontroller.js')
+                ->prependFile($this->basePath() . '/js/bootstrap.min.js')
+                ->prependFile($this->basePath() . '/js/angular.js')
+                ->prependFile($this->basePath() . '/js/jquery.min.js')
+                ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+                ->prependFile($this->basePath() . '/js/html5shiv.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+        ;
+        ?>
+
+
     </head>
     <body style="padding-top:70px">
+
+        <header role="banner" class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
+            <div class="container">
+                <div class="navbar-header">
+                    <button data-target=".bs-navbar-collapse" data-toggle="collapse" type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">Green High Performance Computing</a>
+                </div>
+                <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Simulation</a></li>
+                        <li><a href="/sim/analytics">Analytics</a></li>
+                        <li><a href="/sim/metaprofile">Meta-Skeleton Profiles</a></li>
+                        <li><a href="/sim/archives">Archives</a></li>
+                        <li><a href="/sim/aboutus">About Us</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
         <div class="container">
-            <div class="navbar navbar-default navbar-fixed-top navbar-inverse">
+            <?php echo $this->content; ?>
+            <hr>
+
+
+            <div id="footer">
                 <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <p class="navbar-text" style="color: green; font-weight: bolder">Green High Performance Computing</p>
-                        <!--<a class="navbar-brand" href="#">Green HPC</a>-->
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="/">Simulation</a></li>
-                            <li><a href="/sim/analytics">Analytics</a></li>
-                            <li><a href="/sim/metaprofile">Meta-Skeleton Profiles</a></li>
-                            <li><a href="/sim/archives">Archives</a></li>
-                            <li><a href="/sim/aboutus">About Us</a></li>
-                            
-                            
-                        </ul>
-                    </div><!--/.nav-collapse -->
+                    <p class="text-muted credit"><a href="http://nsfcac.rutgers.edu/GreenHPC/">Contact us</a>| © 2013 Ivan Rodero</p>
                 </div>
             </div>
-            <div class="container">
-                <?php echo $this->content; ?>
-                <hr>
+
+            <!--<footer>
+                <p align="center"><img src="img/greenhpc.png" height="65"><a name="GreenHPC"></a></p>
+                <h3>Sponsors</h3>
+                <p>
+                    The research at GreenHPC is sponsored by the National Science Foundation and members of the <a href="http://www.nsfcac.org/">Cloud and Autonomic Computing Center</a>.
+                </p>
+                <p align="center"><img src="img/nsf.jpg" height="85"><img src="img/cac.jpg" height="40"><img src="img/rdi2.png" height="60"></p>
+                <p align="center"><a href="http://nsfcac.rutgers.edu/GreenHPC/">Contact us</a>| © 2013 Ivan Rodero</p>
+            </footer> -->
+        </div> <!-- /container -->
+        <?php echo $this->inlineScript() ?>
 
 
-                <div id="footer">
-                    <div class="container">
-                        <p class="text-muted credit"><a href="http://nsfcac.rutgers.edu/GreenHPC/">Contact us</a>| © 2013 Ivan Rodero</p>
-                    </div>
-                </div>
-
-                <!--<footer>
-                    <p align="center"><img src="img/greenhpc.png" height="65"><a name="GreenHPC"></a></p>
-                    <h3>Sponsors</h3>
-                    <p>
-                        The research at GreenHPC is sponsored by the National Science Foundation and members of the <a href="http://www.nsfcac.org/">Cloud and Autonomic Computing Center</a>.
-                    </p>
-                    <p align="center"><img src="img/nsf.jpg" height="85"><img src="img/cac.jpg" height="40"><img src="img/rdi2.png" height="60"></p>
-                    <p align="center"><a href="http://nsfcac.rutgers.edu/GreenHPC/">Contact us</a>| © 2013 Ivan Rodero</p>
-                </footer> -->
-            </div> <!-- /container -->
-            <?php echo $this->inlineScript() ?>
-            
-  
     </body>
 </html>

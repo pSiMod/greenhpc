@@ -17,8 +17,13 @@ class SimController extends AbstractActionController {
         if ($request->isPost()) {
 
             //get the path where all the simulation files are stored
-            $simulationPath = realpath($_SERVER['DOCUMENT_ROOT'] . '/../data/simulation');
+            
+            $scriptlocaton = substr($_SERVER['SCRIPT_FILENAME'], 0, strlen($scriptlocaton) - 10 );
+            
+            $simulationPath = realpath($scriptlocaton . '/../data/simulation');
 
+            
+            
             //make a folder with current date if it dsnt exists.
             $dirname = date('M-d-Y');
             $dirpath = $simulationPath . '/' . $dirname;
@@ -51,7 +56,7 @@ class SimController extends AbstractActionController {
                             $params .= $key . ':' . $value . ',';
                         }
                         
-                        $params = substr($params, 0, strlen($params)-2);
+                        $params = substr($params, 0, strlen($params)-1);
                         // create a params.dat file which will contain the above generted
                         //value pairs.
                         $paramsPath .= $dirpath . '/params.dat';
