@@ -184,7 +184,7 @@
                         if ($success) {
                             ?>
                             <thead>
-                                <tr>
+                                <tr class="">
                                     <th>Parameter</th>
                                     <th>Value</th>
                                 </tr>
@@ -203,12 +203,12 @@
                             } else {
                                 ?>
                             <thead>
-                                <tr class="error">
+                                <tr class="">
                                     <th>Error Message</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <tr>
+                            <tr class="danger">
                             <td><?php echo $errorMessage ?></td>
                             </tr>     
                             <?php

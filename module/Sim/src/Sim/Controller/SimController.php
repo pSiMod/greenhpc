@@ -65,9 +65,10 @@ class SimController extends AbstractActionController {
                         fclose($file);
 
                         $simlocation = realpath($_SERVER['DOCUMENT_ROOT'] . '/../bin');
-                        $simlocation .= "/./simulator ";
+                        $outputfile = $simlocation . "/output.dat";
+                        $simlocation .= "/./titantopologysim_lineal ";
 
-                        $command = $simlocation . $paramsPath . " " . $mpiFilePath;
+                        $command = $simlocation . $paramsPath . " " . $mpiFilePath . " " . $outputfile;
                         
                         $output = array();
                         exec($command, $output);
