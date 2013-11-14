@@ -1,291 +1,96 @@
-<?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
-<div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                
-                    Skeleton Parameters
-               
-            </h4>
-        </div>
-             </a>
-        <div id="collapseOne" class="panel-collapse collapse in">
-            <div class="panel-body">
-                <div class="form-group col-md-6">
-                    <label for="analyticsWorkflow" class="col-md-4 control-label">Analytics Workflow</label>
-                    <div class="col-md-8">
-
-                        <select class="form-control"  id="analyticsWorkflow" placeholder="Analytics Workflow">
-                            <option selected value="0">Please select...</option>
-                            <option value="1">Topology analytics</option>
-                        </select>
+<form role="form" action="/sim/analytics" class="form-horizontal" method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-2">
+                    <div class="form-group">
+                        <label for="plottype" class="col-md-4 control-label">Plot Type</label>
+                        <div class="col-md-8">
+                            <select class="form-control"  id="existingMetaProfile" name="plottype" placeholder="Plot Type">
+                                <option selected value="0">Please select...</option>
+                                <option value="Titan">Line plot</option>
+                                <option value="Create New Profile">Bar plot</option>
+                                <option value="Create New Profile">3D plot</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="dataAnalyticsType" class="col-md-4 control-label">Data Analytics Type</label>
-                    <div class="col-md-8">
-                        <select class="form-control" id="dataAnalyticsType" placeholder="Data Analytics Type">
-                            <option selected  value="0">Please select...</option>
-                            <option value="1">In-situ</option>
-                            <option disabled="" value="2">In-transit</option>
-                            <option disabled="" value="3">Hybrid</option>
-                        </select>
+            </div>
+            <div class="row xaxis-params">
+                <!--Skelition Parameters Block-->
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="xaxisparams" class="col-md-4 control-label">X-axis Parameter</label>
+                        <div class="col-md-8">
+                            <select class="form-control" id="xaxisparams" placeholder="X- axis parameters">
+                                <option selected  value="0">Please select...</option>
+                                <option value="1">MPI Ranks per Node</option>
+                                <option value="2">Fan In</option>
+                                <option value="3">Cores per Node</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="dataAnalyticsType" class="col-md-4 control-label">Range:</label>
+                        <div class="col-md-8">
+                            <label for="range-start" class="col-md-2 control-label">From</label>
+                            <div class="col-md-4">
+                            <input type="text" class="form-control" id="range-start" placeholder="#">
+                            </div>
+                            
+                            <label for="range-end" class="col-md-2 control-label">To</label>
+                            <div class="col-md-4">
+                            <input type="text" class="form-control" id="range-end" placeholder="#">
+                            </div>
+                            
+                            <label for="range-step" class="col-md-2 control-label">Step</label>
+                            <div class="col-md-4">
+                            <input type="text" class="form-control" id="range-step" placeholder="#">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End of Skeleton Parameters Block-->
+            </div>
+            <div class="row yaxis-params">
+                <div class ="row">
+                    <div class="form-group col-md-12">
+                        <label for="yaxisparams" class="col-md-4 control-label">Y-axis Parameter</label>
+                        <div class="col-md-8">
+                            <select class="form-control" id="yaxisparams" placeholder="Y- axis parameters">
+                                <option selected  value="0">Please select...</option>
+                                <option value="1">% Energy for Communication</option>
+                                <option value="2">Total Energy</option>
+                                <option value="3">% local communication</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="panel panel-default">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-
-                    Architecture Parameters
-            </h4>
+        <div class="col-md-6">
+            
         </div>
-                        </a>
 
-        <div id="collapseTwo" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="form-group col-md-6">
-                    <label for="numberOfCores" class="col-lg-6 control-label">CPU Cores</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="numberOfCores" placeholder="#">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="coresPerNode" class="col-lg-6 control-label">Cores per Node</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="coresPerNode" placeholder="#">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="cpuIdlePower" class="col-lg-6 control-label">CPU Idle power</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="cpuIdlePower" placeholder="Power(W)">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="cpuActivePower" class="col-lg-6 control-label">CPU Active Power</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="cpuActivePower" placeholder="Power(W)">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="memIdlePower" class="col-lg-6 control-label">Memory Idle Power</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="memIdlePower" placeholder="Power(W)">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="memActivePower" class="col-lg-6 control-label">Memory Active Power</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="memActivePower" placeholder="Power(W)">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="nicIdlePower" class="col-lg-6 control-label">NIC Idle Power</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="nicIdlePower" placeholder="Power(W)">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="nicActivePower" class="col-lg-6 control-label">NIC Active Power</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="nicActivePower" placeholder="Power(W)">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-group col-md-6">
-                    <label for="miscActivePower" class="col-lg-6 control-label">Misc Active Power</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="miscActivePower" placeholder="Power(W)">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="networkType" class="col-lg-6 control-label">Network Type</label>
-                    <div class="col-lg-6">
-                        <label class="">
-                            <input type="radio" name="networkType" id="networkType" value="Gemini"> Gemini
-                        </label>
-                        <label class="">
-                            <input type="radio" name="networkType" id="networkType" value="Gemini"> Infiniband
-                        </label>
-                    </div>
-                </div>
-                 <div class="form-group col-md-6">
-                    <div class="btn-group">
-                        <button class="btn btn-default" type="button">Add <span class="glyphicon glyphicon-plus icon-success"></span></button>
-                        <button class="btn btn-default" type="button">Delete <span class="glyphicon glyphicon-remove"></span></button>
-                    </div>
-                  </div> 
+    </div>
+    <div class ="row"><!--Start of User Action Params-->
+        <div class="form-group">
+            <div class="col-md-4 col-md-offset-3">
+                <input type="submit" class="btn btn-success" value="Plot graph" />
             </div>
         </div>
-
-    </div>
-    <div class="panel panel-default">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                
-                    Co-design parameters
-               
-            </h4>
-        </div>
-         </a>
-        <div id="collapseThree" class="panel-collapse collapse">
+    </div><!--End of User Action Params-->
+    <div class="row">           <!-- Start of Results Section-->
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Results <?php echo $simulationPath ?></h3>
+            </div>
             <div class="panel-body">
-                <div class="form-group col-md-6">
-                    <label for="mpiRanksNode" class="col-lg-6 control-label">MPI Ranks Per Node</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="mpiRanksNode" placeholder="#">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="mpiRankMappingPolicy" class="col-lg-6 control-label">MPI rank mapping Policy</label>
-                    <div class="col-lg-6">
-                        <label class="">
-                            <input type="radio" name="mpiRankMappingPolicy" id="mpiRankMappingPolicy" value="Consecutive"> Consecutive (default)
-                        </label>
-                        <label class="">
-                            <input type="radio" name="mpiRankMappingPolicy" id="mpiRankMappingPolicy" value="Random"> Random
-                        </label>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="form-group ">
-                        <div class="btn-group">
-                            <button class="btn btn-default" type="button">Add <span class="glyphicon glyphicon-plus icon-success"></span></button>
-                            <button class="btn btn-default" type="button">Delete <span class="glyphicon glyphicon-remove"></span></button>
-                        </div>
-                    </div>        
-                </div>
+                
             </div>
         </div>
-    </div>
-    <div class="panel panel-default">
-         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-               
-                    Application Parameters
-                
-            </h4>
-        </div>
-             </a>
-        <div id="collapseFour" class="panel-collapse collapse">
-            <div class="panel-body">
-                <div class="form-group col-md-6">
-                    <label for="executionTime" class="col-lg-6 control-label">Execution Time(s)</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="executionTime" placeholder="#">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="cpuActivity" class="col-lg-6 control-label">CPU Activity(1-100)</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="cpuActivity" placeholder="1-100">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="memActivity" class="col-lg-6 control-label">Memory Activity(1-100)</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="memActivity" placeholder="1-100">
-                            <span class="input-group-addon">
-                                <input type="checkbox">
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="mpiActivityFile" class="col-lg-6 control-label">MPI Activity File</label>
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <input type="file" id="mpiActivityFile">
-                            <p class="help-block">(Source_MPI_Rank, Destination_MPI_Rank, data_size)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="form-group ">
-                        <div class="btn-group">
-                            <button class="btn btn-default" type="button">Add <span class="glyphicon glyphicon-plus icon-success"></span></button>
-                            <button class="btn btn-default" type="button">Delete <span class="glyphicon glyphicon-remove"></span></button>
-                        </div>
-                    </div>        
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+    </div><!--End of Results Section-->
+</form>

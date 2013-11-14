@@ -24,8 +24,9 @@ simapp.controller('paramsCtrl',function archCtrl($scope){
     $scope.appParams = [{'name':'executionTime','label':'Execution Time(s)','type':'text'},
 {'name':'cpuActivity','label':'CPU Activity(1-100)','type':'text'},
 {'name':'memActivity','label':'Memory Activity(1-100)','type':'text'}
-];
 
+];
+//{'name':'faninn','label':'Fan In','type':'text'}
 
 
 $scope.addArchParam = function(){

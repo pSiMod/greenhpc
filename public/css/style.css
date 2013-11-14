@@ -162,6 +162,79 @@ border-radius: 4px 4px 4px 4px;
     text-transform: uppercase;
     top: 15px;
 }
+
+.xaxis-params
+{
+    border-color: #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: none;
+    padding: 45px 15px 15px;
+    margin: 12px 12px 12px 12px;
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+}
+.xaxis-params:after {
+    color: #309900;
+    content: "X axis";
+    font-size: 12px;
+    font-weight: bold;
+    left: 15px;
+    letter-spacing: 1px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 15px;
+}
+.yaxis-params
+{
+    border-color: #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: none;
+    padding: 45px 15px 15px;
+    margin: 12px 12px 12px 12px;
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+}
+.yaxis-params:after {
+    color: #309900;
+    content: "Y axis";
+    font-size: 12px;
+    font-weight: bold;
+    left: 15px;
+    letter-spacing: 1px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 15px;
+}
+.temp-params
+{
+    border-color: #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: none;
+    padding: 45px 15px 15px;
+    margin: 0px 12px 12px 12px;
+    position: relative;
+    margin-left: 0;
+    margin-right: 0;
+}
+.temp-params:after {
+    color: #309900;
+    content: "Temp Paramters";
+    font-size: 12px;
+    font-weight: bold;
+    left: 15px;
+    letter-spacing: 1px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 15px;
+}
 .accordion-toggle > .panel-heading {
     background-image: linear-gradient(to bottom, #F5F5F5 0px, #E8E8E8 100%);
     background-repeat: repeat-x;
