@@ -102,7 +102,15 @@ class SimController extends AbstractActionController {
     }
 
     public function analyticsAction() {
-        return new ViewModel();
+        $request = $this->getRequest();
+        $view = new ViewModel();
+        if ($request->isPost()) {
+            $view->postdata = TRUE;
+            $view->imageurl = "/img/commgraph.png";
+            
+        }
+        
+        return $view;
     }
 
     public function aboutusAction() {

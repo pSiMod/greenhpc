@@ -8,10 +8,10 @@
                         <label for="plottype" class="col-md-4 control-label">Plot Type</label>
                         <div class="col-md-8">
                             <select class="form-control"  id="existingMetaProfile" name="plottype" placeholder="Plot Type">
-                                <option selected value="0">Please select...</option>
-                                <option value="Titan">Line plot</option>
-                                <option value="Create New Profile">Bar plot</option>
-                                <option value="Create New Profile">3D plot</option>
+                                <option <?php echo $postdata == null ? "selected" : "";?> value="0">Please select...</option>
+                                <option <?php echo $postdata != null ? "selected" : "";?> value="Line Plot">Line plot</option>
+                                <option value="Bar Plot">Bar plot</option>
+                                <option value="3D Plot">3D plot</option>
                             </select>
                         </div>
                     </div>
@@ -24,8 +24,8 @@
                         <label for="xaxisparams" class="col-md-4 control-label">X-axis Parameter</label>
                         <div class="col-md-8">
                             <select class="form-control" id="xaxisparams" placeholder="X- axis parameters">
-                                <option selected  value="0">Please select...</option>
-                                <option value="1">MPI Ranks per Node</option>
+                                <option <?php echo $postdata == null ? "selected" : "";?>   value="0">Please select...</option>
+                                <option <?php echo $postdata != null ? "selected" : "";?> value="1">MPI Ranks per Node</option>
                                 <option value="2">Fan In</option>
                                 <option value="3">Cores per Node</option>
                             </select>
@@ -38,17 +38,17 @@
                         <div class="col-md-8">
                             <label for="range-start" class="col-md-2 control-label">From</label>
                             <div class="col-md-4">
-                            <input type="text" class="form-control" id="range-start" placeholder="#">
+                            <input type="text" class="form-control" id="range-start" placeholder="#" value="<?php echo $postdata != null ? "1" : "";?> ">
                             </div>
                             
                             <label for="range-end" class="col-md-2 control-label">To</label>
                             <div class="col-md-4">
-                            <input type="text" class="form-control" id="range-end" placeholder="#">
+                            <input type="text" class="form-control" id="range-end" placeholder="#" value="<?php echo $postdata != null ? "16" : "";?> ">
                             </div>
                             
                             <label for="range-step" class="col-md-2 control-label">Step</label>
                             <div class="col-md-4">
-                            <input type="text" class="form-control" id="range-step" placeholder="#">
+                            <input type="text" class="form-control" id="range-step" placeholder="#" value="<?php echo $postdata != null ? "1" : "";?> ">
                             </div>
                         </div>
                     </div>
@@ -61,8 +61,8 @@
                         <label for="yaxisparams" class="col-md-4 control-label">Y-axis Parameter</label>
                         <div class="col-md-8">
                             <select class="form-control" id="yaxisparams" placeholder="Y- axis parameters">
-                                <option selected  value="0">Please select...</option>
-                                <option value="1">% Energy for Communication</option>
+                                <option <?php echo $postdata == null ? "selected" : "";?>  value="0">Please select...</option>
+                                <option <?php echo $postdata != null ? "selected" : "";?> value="1">% Energy for Communication</option>
                                 <option value="2">Total Energy</option>
                                 <option value="3">% local communication</option>
                             </select>
@@ -86,10 +86,10 @@
     <div class="row">           <!-- Start of Results Section-->
         <div class="panel panel-success">
             <div class="panel-heading">
-                <h3 class="panel-title">Results <?php echo $simulationPath ?></h3>
+                <h3 class="panel-title">Results</h3>
             </div>
             <div class="panel-body">
-                
+                <img src="<?php echo $imageurl; ?>" style="height: 400px; width: 600px;"/>
             </div>
         </div>
     </div><!--End of Results Section-->
