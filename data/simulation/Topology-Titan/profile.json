@@ -1,0 +1,121 @@
+{
+    "analyticsWorkflow": {
+        "name": "Topology analytics"
+    },
+    "dataAnalyticsType": {
+        "name": "In-situ"
+    },
+    "archParams": [
+        {
+            "name": "numberOfCores",
+            "label": "CPU Cores",
+            "type": "text",
+            "value": "24"
+        },
+        {
+            "name": "coresPerNode",
+            "label": "Cores per Node",
+            "type": "text",
+            "value": "5"
+        },
+        {
+            "name": "cpuIdlePower",
+            "label": "CPU Idle power",
+            "type": "text",
+            "value": "6"
+        },
+        {
+            "name": "cpuActivePower",
+            "label": "CPU Active Power",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "memIdlePower",
+            "label": "Memory Idle Power",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "memActivePower",
+            "label": "Memory Active Power",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "nicIdlePower",
+            "label": "NIC Idle Power",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "nicActivePower",
+            "label": "NIC Active Power",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "miscActivePower",
+            "label": "Misc Active Power",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "networkType",
+            "label": "Network Type",
+            "type": "radio",
+            "options": [
+                {
+                    "name": "Gemini"
+                },
+                {
+                    "name": "Infiniband"
+                }
+            ],
+            "value": "Infiniband"
+        }
+    ],
+    "runtimeParams": [
+        {
+            "name": "mpiRanksNode",
+            "label": "MPI Ranks Per Node",
+            "type": "text",
+            "value": "10"
+        },
+        {
+            "name": "mpiRankMappingPolicy",
+            "label": "MPI rank mapping Policy",
+            "type": "radio",
+            "options": [
+                {
+                    "name": "Consecutive"
+                },
+                {
+                    "name": "Random"
+                }
+            ],
+            "value": "Random"
+        }
+    ],
+    "appParams": [
+        {
+            "name": "executionTime",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "10"
+        },
+        {
+            "name": "cpuActivity",
+            "label": "CPU Activity(1-100)",
+            "type": "text",
+            "value": "5"
+        },
+        {
+            "name": "memActivity",
+            "label": "Memory Activity(1-100)",
+            "type": "text",
+            "value": "6"
+        }
+    ],
+    "mpiActivityFile": ""
+}
