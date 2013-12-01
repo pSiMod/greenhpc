@@ -1,0 +1,38 @@
+<table class="table table-bordered table-condensed">
+  
+    <?php
+    if ($success) {
+        ?>
+        <thead>
+            <tr class="">
+                <th>Parameter</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            foreach ($output as $key => $value) {
+                $split = explode(":", $value);
+                ?>
+                <tr class="success">
+                    <td><?php echo trim($split[0]) ?></td>
+                    <td><?php echo trim($split[1]) ?></td>
+                </tr>     
+                <?php
+            }
+        } else {
+            ?>
+        <thead>
+            <tr class="">
+                <th>Error Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="danger">
+                <td><?php echo $errorMessage ?></td>
+            </tr>     
+            <?php
+        }
+        ?>
+    </tbody>
+</table>

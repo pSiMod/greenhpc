@@ -3,68 +3,159 @@
  * and open the template in the editor.
  */
 
-var simapp = angular.module('SimCtrlApp',[]);
+var simapp = angular.module('SimCtrlApp', []);
 
-simapp.controller('paramsCtrl',function archCtrl($scope){
+simapp.controller('paramsCtrl', function($scope, $http) {
+
+    $scope.existingMetaProfileOptions = [{'name': 'Topology-Titan'}];
+
+    $scope.analyticsWorkflowOptions = [{'name': 'Topology analytics'}];
+
+    $scope.dataAnalyticsTypeOptions = [{'name': 'In-situ'}, {'name': 'In-transit'}, {'name': 'Hybrid'}];
     
-    $scope.archParams = [{'name':'numberOfCores','label':'CPU Cores','type':'text'},
-{'name':'coresPerNode','label':'Cores per Node','type':'text'},
-{'name':'cpuIdlePower','label':'CPU Idle power','type':'text'},
-{'name':'cpuActivePower','label':'CPU Active Power','type':'text'},
-{'name':'memIdlePower','label':'Memory Idle Power','type':'text'},
-{'name':'memActivePower','label':'Memory Active Power','type':'text'},
-{'name':'nicIdlePower','label':'NIC Idle Power','type':'text'},
-{'name':'nicActivePower','label':'NIC Active Power','type':'text'},
-{'name':'miscActive Power','label':'Misc Active Power','type':'text'}
-];
+    $scope.paneldata = "";
+    $scope.existingMetaProfile = "";
+    $scope.analyticsWorkflow = "";
+    $scope.archParams = "";
+    $scope.dataAnalyticsType = "";
+    $scope.runtimeParams = "";
+    $scope.appParams = "";
+    $scope.mpiActivityFile = "";
+    
+    $http.get('/sim/getexistingprofiles').success(function(data){
+        $scope.existingMetaProfileOptions = data['existingMetaProfileOptions'];
+        $scope.existingMetaProfile = $scope.searchValue($scope.existingMetaProfileOptions,{'name':'default'});
+    }).error(function(){
+        
+    });
 
-    $scope.codesignParams = [{'name':'mpiRanksNode','label':'MPI Ranks Per Node','type':'text'}
-];
+    $http.get('/sim/getprofile?profile=default').success(function(data) {
+        $scope.analyticsWorkflow = $scope.searchValue($scope.analyticsWorkflowOptions, data["analyticsWorkflow"]);
+        $scope.dataAnalyticsType = $scope.searchValue($scope.dataAnalyticsTypeOptions, data["dataAnalyticsType"]);
+        $scope.archParams = data["archParams"];
+        $scope.runtimeParams = data["runtimeParams"];
+        $scope.appParams = data["appParams"];
+        $scope.mpiActivityFile = data['mpiActivityFile'];
 
-    $scope.appParams = [{'name':'executionTime','label':'Execution Time(s)','type':'text'},
-{'name':'cpuActivity','label':'CPU Activity(1-100)','type':'text'},
-{'name':'memActivity','label':'Memory Activity(1-100)','type':'text'}
+    }).error(function(e) {
+        alert('Unable to retrieve the fields in default functional layout');
+    });
 
-];
-//{'name':'faninn','label':'Fan In','type':'text'}
+    $scope.searchValue = function(coll, key) {
+        len = coll.length;
+        for (i = 0; i < len; i++)
+            if (coll[i].name == key.name)
+                return coll[i];
+    };
+    
+    $scope.updateProfile = function(){
+        
+        var url = "/sim/getprofile?profile=";
+        url = url.concat($scope.existingMetaProfile.name);
+        $http.get(url).success(function(data) {
+        $scope.analyticsWorkflow = $scope.searchValue($scope.analyticsWorkflowOptions, data["analyticsWorkflow"]);
+        $scope.dataAnalyticsType = $scope.searchValue($scope.dataAnalyticsTypeOptions, data["dataAnalyticsType"]);
+        $scope.archParams = data["archParams"];
+        $scope.runtimeParams = data["runtimeParams"];
+        $scope.appParams = data["appParams"];
+        $scope.mpiActivityFile = data['mpiActivityFile'];
 
+    }).error(function(e) {
+        alert('Unable to retrieve the fields in default functional layout');
+    });
+    };
 
-$scope.addArchParam = function(){
-    newparam = $scope.newArchLabel.replace(/\s/g,'');
-    $scope.archParams.push({name:newparam,label:$scope.newArchLabel,type:'text'});
-    $('#archModel').modal('hide');
-    $scope.newArchLabel="";
+    $scope.addArchParam = function() {
+        newparam = $scope.newArchLabel.replace(/\s/g, '');
+        $scope.archParams.push({'name': newparam, 'label': $scope.newArchLabel, 'type': 'text', 'value': "0"});
+        $('#archModel').modal('hide');
+        $scope.newArchLabel = "";
 
-};
+    };
 
-$scope.removeArchParam =function(param){
-    index = $scope.archParams.indexOf(param);
-    $scope.archParams.splice(index,1);
-};
+    $scope.removeArchParam = function(param) {
+        index = $scope.archParams.indexOf(param);
+        $scope.archParams.splice(index, 1);
+    };
 
-$scope.addCoDesignParam = function(){
-    newparam = $scope.newcodesignLabel.replace(/\s/g,'');
-    $scope.codesignParams.push({name:newparam,label:$scope.newcodesignLabel,type:'text'});
-    $('#codesignModel').modal('hide');
-    $scope.newcodesignLabel="";
+    $scope.addCoDesignParam = function() {
+        newparam = $scope.newruntimeLabel.replace(/\s/g, '');
+        $scope.runtimeParams.push({'name': newparam, 'label': $scope.newruntimeLabel, 'type': 'text', 'value': "0"});
+        $('#runtimeModel').modal('hide');
+        $scope.newruntimeLabel = "";
 
-};
+    };
 
-$scope.removeCoDesignParam =function(param){
-    index = $scope.codesignParams.indexOf(param);
-    $scope.codesignParams.splice(index,1);
-};
+    $scope.removeCoDesignParam = function(param) {
+        index = $scope.runtimeParams.indexOf(param);
+        $scope.runtimeParams.splice(index, 1);
+    };
 
-$scope.addAppParam = function(){
-    newparam = $scope.newAppLabel.replace(/\s/g,'');
-    $scope.appParams.push({name:newparam,label:$scope.newAppLabel,type:'text'});
-    $('#appModel').modal('hide');
-    $scope.newAppLabel="";
+    $scope.addAppParam = function() {
+        newparam = $scope.newAppLabel.replace(/\s/g, '');
+        $scope.appParams.push({'name': newparam, 'label': $scope.newAppLabel, 'type': 'text', 'value': "0"});
+        $('#appModel').modal('hide');
+        $scope.newAppLabel = "";
 
-};
+    };
 
-$scope.removeAppParam =function(param){
-    index = $scope.appParams.indexOf(param);
-    $scope.appParams.splice(index,1);
-};
+    $scope.removeAppParam = function(param) {
+        index = $scope.appParams.indexOf(param);
+        $scope.appParams.splice(index, 1);
+    };
+
+    $scope.simulate = function() {
+        var f = document.getElementById('simulationform');
+        var fd = new FormData(f);
+        $http.post('/sim/simulate',
+                fd, {
+                    withCredentials: true,
+                    headers: {'Content-Type': undefined},
+                    transformRequest: angular.identity
+                }).success(function(data) {
+            $(".simulationResult").html(data);
+        }).error(function(e) {
+            alert('error');
+        });
+    };
+
+    $scope.save = function() {
+        
+        var fd = new FormData();
+        fd.append('existingMetaProfile', angular.toJson($scope.existingMetaProfile));
+        fd.append('analyticsWorkflow', angular.toJson($scope.analyticsWorkflow));
+        fd.append('dataAnalyticsType', angular.toJson($scope.dataAnalyticsType));
+        fd.append('archParams', angular.toJson($scope.archParams));
+        fd.append('runtimeParams', angular.toJson($scope.runtimeParams));
+        fd.append('appParams', angular.toJson($scope.appParams));
+        fd.append('mpiActivityFile', $('#mpiActivityFile').val());
+        
+        $http.post('/sim/save', fd, {
+            withCredentials: true,
+            headers: {'Content-Type': undefined},
+            transformRequest: angular.identity
+        }).success(function(data) {
+            $scope.opmessage = data;
+        }).error(function(e) {
+            $scope.opmessage = data;
+        });
+
+    };
+
+    $scope.saveas = function() {
+        var f = document.getElementById('simulationform');
+        var fd = new FormData(f);
+        $http.post('/sim/saveas',
+                fd, {
+                    withCredentials: true,
+                    headers: {'Content-Type': undefined},
+                    transformRequest: angular.identity
+                }).success(function(data) {
+            $(".simulationResult").html(data);
+        }).error(function(e) {
+            alert('error');
+        });
+    };
 });
+
+

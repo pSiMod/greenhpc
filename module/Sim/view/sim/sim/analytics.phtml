@@ -1,96 +1,94 @@
-
-<form role="form" action="/sim/analytics" class="form-horizontal" method="POST" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-md-6">
+<div><div ng-controller="analyticsCtrl">
+        <form role="form" action="/sim/analytics" class="form-horizontal" method="POST" enctype="multipart/form-data">
             <div class="row">
-                <div class="col-md-6 col-md-offset-2">
-                    <div class="form-group">
-                        <label for="plottype" class="col-md-4 control-label">Plot Type</label>
-                        <div class="col-md-8">
-                            <select class="form-control"  id="existingMetaProfile" name="plottype" placeholder="Plot Type">
-                                <option <?php echo $postdata == null ? "selected" : "";?> value="0">Please select...</option>
-                                <option <?php echo $postdata != null ? "selected" : "";?> value="Line Plot">Line plot</option>
-                                <option value="Bar Plot">Bar plot</option>
-                                <option value="3D Plot">3D plot</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row xaxis-params">
-                <!--Skelition Parameters Block-->
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <label for="xaxisparams" class="col-md-4 control-label">X-axis Parameter</label>
-                        <div class="col-md-8">
-                            <select class="form-control" id="xaxisparams" placeholder="X- axis parameters">
-                                <option <?php echo $postdata == null ? "selected" : "";?>   value="0">Please select...</option>
-                                <option <?php echo $postdata != null ? "selected" : "";?> value="1">MPI Ranks per Node</option>
-                                <option value="2">Fan In</option>
-                                <option value="3">Cores per Node</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <label for="dataAnalyticsType" class="col-md-4 control-label">Range:</label>
-                        <div class="col-md-8">
-                            <label for="range-start" class="col-md-2 control-label">From</label>
-                            <div class="col-md-4">
-                            <input type="text" class="form-control" id="range-start" placeholder="#" value="<?php echo $postdata != null ? "1" : "";?> ">
-                            </div>
-                            
-                            <label for="range-end" class="col-md-2 control-label">To</label>
-                            <div class="col-md-4">
-                            <input type="text" class="form-control" id="range-end" placeholder="#" value="<?php echo $postdata != null ? "16" : "";?> ">
-                            </div>
-                            
-                            <label for="range-step" class="col-md-2 control-label">Step</label>
-                            <div class="col-md-4">
-                            <input type="text" class="form-control" id="range-step" placeholder="#" value="<?php echo $postdata != null ? "1" : "";?> ">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label for="existingMetaProfile" class="col-md-6 control-label">Meta Skeleton Profiles</label>
+                                <div class="col-md-6">
+                                    <select class="form-control"  id="existingMetaProfile" name="existingMetaProfile" ng-model="existingMetaProfile" ng-options="c.name for c in existingMetaProfileOptions">
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!--End of Skeleton Parameters Block-->
-            </div>
-            <div class="row yaxis-params">
-                <div class ="row">
-                    <div class="form-group col-md-12">
-                        <label for="yaxisparams" class="col-md-4 control-label">Y-axis Parameter</label>
-                        <div class="col-md-8">
-                            <select class="form-control" id="yaxisparams" placeholder="Y- axis parameters">
-                                <option <?php echo $postdata == null ? "selected" : "";?>  value="0">Please select...</option>
-                                <option <?php echo $postdata != null ? "selected" : "";?> value="1">% Energy for Communication</option>
-                                <option value="2">Total Energy</option>
-                                <option value="3">% local communication</option>
-                            </select>
+                    <div class="row xaxis-params">
+                        <!--Skelition Parameters Block-->
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="xaxisparams" class="col-md-4 control-label">X-axis Parameter</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" id="xaxisparams" placeholder="X- axis parameters">
+                                        <option <?php echo $postdata == null ? "selected" : ""; ?>   value="0">Please select...</option>
+                                        <option <?php echo $postdata != null ? "selected" : ""; ?> value="1">MPI Ranks per Node</option>
+                                        <option value="2">Fan In</option>
+                                        <option value="3">Cores per Node</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            
-        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="dataAnalyticsType" class="col-md-4 control-label">Range:</label>
+                                <div class="col-md-8">
+                                    <label for="range-start" class="col-md-2 control-label">From</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="range-start" placeholder="#" value="<?php echo $postdata != null ? "1" : ""; ?> ">
+                                    </div>
 
+                                    <label for="range-end" class="col-md-2 control-label">To</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="range-end" placeholder="#" value="<?php echo $postdata != null ? "16" : ""; ?> ">
+                                    </div>
+
+                                    <label for="range-step" class="col-md-2 control-label">Step</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" id="range-step" placeholder="#" value="<?php echo $postdata != null ? "1" : ""; ?> ">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of Skeleton Parameters Block-->
+                    </div>
+                    <div class="row yaxis-params">
+                        <div class ="row">
+                            <div class="form-group col-md-12">
+                                <label for="yaxisparams" class="col-md-4 control-label">Y-axis Parameter</label>
+                                <div class="col-md-8">
+                                    <select class="form-control" id="yaxisparams" placeholder="Y- axis parameters">
+                                        <option <?php echo $postdata == null ? "selected" : ""; ?>  value="0">Please select...</option>
+                                        <option <?php echo $postdata != null ? "selected" : ""; ?> value="1">% Energy for Communication</option>
+                                        <option value="2">Total Energy</option>
+                                        <option value="3">% local communication</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class ="row"><!--Start of User Action Params-->
+                        <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+                                <input type="button" id="submitbutton" name="submitbutton"  ng-click="plotgraph()" class="btn btn-success" value="Plot graph" />
+                            </div>
+                        </div>
+                    </div><!--End of User Action Params-->
+                    <div class="row">           <!-- Start of Results Section-->
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Results</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="chart_div" style="width: 450px; height: 250px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+            <!--End of Results Section-->
+        </form>
     </div>
-    <div class ="row"><!--Start of User Action Params-->
-        <div class="form-group">
-            <div class="col-md-4 col-md-offset-3">
-                <input type="submit" class="btn btn-success" value="Plot graph" />
-            </div>
-        </div>
-    </div><!--End of User Action Params-->
-    <div class="row">           <!-- Start of Results Section-->
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <h3 class="panel-title">Results</h3>
-            </div>
-            <div class="panel-body">
-                <img src="<?php echo $imageurl; ?>" style="height: 400px; width: 600px;"/>
-            </div>
-        </div>
-    </div><!--End of Results Section-->
-</form>
+</div>
