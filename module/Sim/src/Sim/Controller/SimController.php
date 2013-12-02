@@ -10,85 +10,6 @@ class SimController extends AbstractActionController {
 
     public function indexAction() {
         $view = new ViewModel();
-        $success = true;
-        $errorMessage = "No Errors";
-        $request = $this->getRequest();
-
-        //if it is a post request
-        if ($request->isPost()) {
-
-            //get the path where all the simulation files are stored
-
-            $scriptlocaton = substr($_SERVER['SCRIPT_FILENAME'], 0, strlen($scriptlocaton) - 10);
-
-            $simulationPath = realpath($scriptlocaton . '/../data/simulation');
-
-
-
-            //make a folder with current date if it dsnt exists.
-            $dirname = date('M-d-Y');
-            $dirpath = $simulationPath . '/' . $dirname;
-            if (!is_dir($dirpath)) {
-                $success = mkdir($dirpath, 0777);
-            }
-
-            if ($success) {
-
-                //save the uploaded file into the directory. If the file already exists
-                //then overright it
-
-                if ($_FILES["mpiActivityFile"]["error"] > 0) {
-                    $success = false;
-                    $errorMessage = "Please upload MPI Activity File";
-                } else {
-
-                    $mpiFilePath = $dirpath . '/' . $_FILES['mpiActivityFile']['name'];
-                    $mpiFileStatus = $mpiFilePath;
-                    if (file_exists($mpiFilePath)) {
-                        move_uploaded_file($_FILES['mpiActivityFile'][tmp_name], $mpiFilePath);
-                    } else {
-                        move_uploaded_file($_FILES['mpiActivityFile'][tmp_name], $mpiFilePath);
-                    }
-
-                    // convert the posted data into comma seperted name:value pairs.
-                    $rawbody = $_POST;
-                    $params = "";
-                    foreach ($rawbody as $key => $value) {
-                        $params .= $key . ':' . $value . ',';
-                    }
-
-                    $params = substr($params, 0, strlen($params) - 1);
-                    // create a params.dat file which will contain the above generted
-                    //value pairs.
-                    $paramsPath .= $dirpath . '/params.dat';
-                    $file = fopen($paramsPath, 'w');
-                    fwrite($file, $params);
-                    fclose($file);
-                    $outputfile = $dirpath . "/output.dat";
-
-                    $simlocation = realpath($_SERVER['DOCUMENT_ROOT'] . '/../bin');
-
-                    $simlocation .= "/./titantopologysim_lineal ";
-
-                    $command = $simlocation . $paramsPath . " " . $mpiFilePath . " " . $outputfile;
-
-                    $output = array();
-                    exec($command, $output);
-                    if (count($output) > 1) {
-                        $view->output = $output;
-                    } else {
-                        $success = FALSE;
-                        $errorMessage = "Failed while executing binary :" . $output[0];
-                    }
-                }
-            } else {
-                $errorMessage = 'Unable to create folder on server. Permission denied';
-            }
-        }
-
-        $view->success = $success;
-        $view->errorMessage = $errorMessage;
-
         return $view;
     }
 
@@ -113,7 +34,7 @@ class SimController extends AbstractActionController {
 
     public function aboutusAction() {
         return new ViewModel();
-    }
+    }  
 
     public function saveAction() {
         $view = new ViewModel();
@@ -124,19 +45,34 @@ class SimController extends AbstractActionController {
             $jsonparam = $this->convertToJson($_POST);
             $existingMetaProfile = json_decode($_POST['existingMetaProfile']);
             $directoryname = $existingMetaProfile->name;
-            $dirpath = $this->getSimulationDir() . '/' . $directoryname;
-            if (is_dir($dirpath)) {
-                $paramsPath .= $dirpath . '/profile.json';
-                $file = fopen($paramsPath, 'w');
-                fwrite($file, $jsonparam);
-                fclose($file);
-                $message = 'Successfully Saved to ' . $directoryname;
+            $dirpath = $this->simulationDir() . '/' . $directoryname;
+
+            if ($_FILES["mpiActivityFile"]["error"] > 0) {
+                $message = "Please upload MPI Activity File";
             } else {
-                $message = "Profile doesnt exist on server";
+                if (is_dir($dirpath)) {
+
+                    $mpiFilePath = $dirpath . '/' . str_replace(" ", "", $_FILES['mpiActivityFile']['name']);
+                    $mpiFileStatus = $mpiFilePath;
+                    if (file_exists($mpiFilePath)) {
+                        move_uploaded_file($_FILES['mpiActivityFile'][tmp_name], $mpiFilePath);
+                    } else {
+                        move_uploaded_file($_FILES['mpiActivityFile'][tmp_name], $mpiFilePath);
+                    }
+
+                    $paramsPath .= $dirpath . '/profile.json';
+                    $file = fopen($paramsPath, 'w');
+                    fwrite($file, $jsonparam);
+                    fclose($file);
+                    $message = 'Successfully Saved to ' . $directoryname;
+                } else {
+                    $message = "Profile doesnt exist on server";
+                }
             }
         } else {
             $message = 'Unable to save';
         }
+
         $view->message = $message;
         return $view;
     }
@@ -144,6 +80,46 @@ class SimController extends AbstractActionController {
     public function saveasAction() {
         $view = new ViewModel();
         $view->setTerminal(true);
+        $request = $this->getRequest();
+        $message = "";
+        if ($request->isPost()) {
+            $jsonparam = $this->convertToJson($_POST);
+            $newMetaProfileName = json_decode($_POST['newMetaProfileName']);
+            $directoryname = $newMetaProfileName;
+            $dirpath = $this->simulationDir() . '/' . $directoryname;
+
+            if ($_FILES["mpiActivityFile"]["error"] > 0) {
+                
+                $message = "Please upload MPI Activity File";
+            } else {
+                if (!is_dir($dirpath)) {
+                    $success = mkdir($dirpath, 0777);
+                    if ($success) {
+
+                        $mpiFilePath = $dirpath . '/' . str_replace(" ", "", $_FILES['mpiActivityFile']['name']);
+                        $mpiFileStatus = $mpiFilePath;
+                        if (file_exists($mpiFilePath)) {
+                            move_uploaded_file($_FILES['mpiActivityFile'][tmp_name], $mpiFilePath);
+                        } else {
+                            move_uploaded_file($_FILES['mpiActivityFile'][tmp_name], $mpiFilePath);
+                        }
+
+                        $paramsPath .= $dirpath . '/profile.json';
+                        $file = fopen($paramsPath, 'w');
+                        fwrite($file, $jsonparam);
+                        fclose($file);
+                        $message = 'Successfully Saved to ' . $directoryname;
+                    } else {
+                        $message = "Not able to create new directory on server.";
+                    }
+                } else {
+                    $message = "Profile already exist on server";
+                }
+            }
+        } else {
+            $message = 'Unable to save';
+        }
+        $view->message = $message;
         return $view;
     }
 
@@ -158,13 +134,13 @@ class SimController extends AbstractActionController {
         if ($request->isPost()) {
 
             //get the path where all the simulation files are stored
-            $simulationPath = $this->getSimulationDir();
+            $simulationPath = $this->simulationDir();
 
             //make a folder with current date if it dsnt exists.
-            $dirname = date('M-d-Y');
+            $dirname = $_POST["existingMetaProfile"];
             $dirpath = $simulationPath . '/' . $dirname;
             if (!is_dir($dirpath)) {
-                $success = mkdir($dirpath, 0777);
+                $success = false;
             }
 
             if ($success) {
@@ -211,7 +187,7 @@ class SimController extends AbstractActionController {
                     }
                 }
             } else {
-                $errorMessage = 'Unable to create folder on server. Permission denied';
+                $errorMessage = 'A profile with name ' . $dirname .'does not exist';
             }
         }
 
@@ -252,7 +228,7 @@ class SimController extends AbstractActionController {
         $params .= 'mpiActivityFile' . ':' . str_replace(" ", "", $postdata['mpiActivityFile']);
         return $params;
     }
-
+  
     private function convertToJson($postdata) {
         $postjson = array(
             "analyticsWorkflow" => Json::decode($postdata['analyticsWorkflow']),
@@ -265,7 +241,7 @@ class SimController extends AbstractActionController {
         return json_encode($postjson);
     }
 
-    private function getSimulationDir() {
+    public function simulationDir() {
         $scriptlocation = substr($_SERVER['SCRIPT_FILENAME'], 0, strlen($_SERVER['SCRIPT_FILENAME']) - 10);
         return realpath($scriptlocation . '/../data/simulation');
     }
@@ -274,7 +250,7 @@ class SimController extends AbstractActionController {
         $view = new ViewModel();
         $view->setTerminal(true);
         $profile = $_GET["profile"];
-        $dirlocation = $this->getSimulationDir();
+        $dirlocation = $this->simulationDir();
         $filepath = $dirlocation . '/' . $profile . '/profile.json';
         $jsonparams = file_get_contents($filepath);
         $view->jsondata = $jsonparams;
@@ -285,7 +261,7 @@ class SimController extends AbstractActionController {
 
         $view = new ViewModel();
         $view->setTerminal(true);
-        $dirlocation = $this->getSimulationDir();
+        $dirlocation = $this->simulationDir();
         $cmd = "ls " . $dirlocation . '/';
         $output = array();
         exec($cmd, $output);

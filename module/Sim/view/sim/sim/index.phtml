@@ -138,7 +138,7 @@
                         <div class="col-md-3 col-md-offset-5">
                             <input type="button" class="btn btn-success" value="Simulate" ng-click="simulate()">
                             <input type="button" class="btn btn-success" value="Save" ng-click="save()"/>
-                            <input type="button" class="btn btn-success" value="Save As" ng-click="saveas()"/>
+                            <a data-toggle="modal" href="#saveasModel" class="btn btn-success"><span class="">Save As</span></a>
                         </div>
                         <div class="col-md-4 success">
                             {{opmessage}}
@@ -224,6 +224,28 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" ng-click="addAppParam()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="saveasModel" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">New Meta Skeleton Profile</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="newskeletonName" class="col-lg-6 control-label">New Meta Skeleton Profile Name: </label>
+                            <div class="col-lg-6">
+                                <input type="newskeletonName" ng-model="newskeletonName"  id="newskeletonName" name="newskeletonName" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="saveas()">Save changes</button>
                     </div>
                 </div>
             </div>
