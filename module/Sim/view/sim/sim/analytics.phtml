@@ -7,7 +7,7 @@
                             <div class="form-group">
                                 <label for="existingMetaProfile" class="col-md-6 control-label">Meta Skeleton Profiles</label>
                                 <div class="col-md-6">
-                                    <select class="form-control"  id="existingMetaProfile" name="existingMetaProfile" ng-model="existingMetaProfile" ng-options="c.name for c in existingMetaProfileOptions">
+                                    <select class="form-control"  id="existingMetaProfile" name="existingMetaProfile" ng-model="existingMetaProfileLeft" ng-options="c.name for c in existingMetaProfileOptions">
                                     </select>
                                 </div>
                             </div>
@@ -17,34 +17,34 @@
                         <!--Skelition Parameters Block-->
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="xaxisparams" class="col-md-4 control-label">X-axis Parameter</label>
+                                <label for="xaxisparamsleft" class="col-md-4 control-label">X-axis Parameter</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" id="xaxisparams" placeholder="X- axis parameters">
-                                        <option    value="0">Please select...</option>
-                                        <option  value="MPIRanksperNode">MPI Ranks per Node</option>
-                                        <option value="2">Fan In</option>
-                                        <option value="3">Cores per Node</option>
+                                    <select class="form-control" id="xaxisparamsleft" placeholder="X- axis parameters">
+                                        <option value="-1">Please select...</option>
+                                        <option value="MPIRanksperNode">MPI Ranks per Node</option>
+                                        <option value="FanIn">Fan In</option>
+                                        <option value="CoresperNode">Cores per Node</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="dataAnalyticsType" class="col-md-4 control-label">Range:</label>
+                                <label for="range" class="col-md-4 control-label">Range:</label>
                                 <div class="col-md-8">
-                                    <label for="range-start" class="col-md-2 control-label">From</label>
+                                    <label for="rangestartleft" class="col-md-2 control-label">From</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="range-start" placeholder="#" value="<?php echo $postdata != null ? "1" : ""; ?> ">
+                                        <input type="text" class="form-control" id="rangestartleft" placeholder="#" value="">
                                     </div>
 
-                                    <label for="range-end" class="col-md-2 control-label">To</label>
+                                    <label for="rangeendleft" class="col-md-2 control-label">To</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="range-end" placeholder="#" value="<?php echo $postdata != null ? "16" : ""; ?> ">
+                                        <input type="text" class="form-control" id="rangeendleft" placeholder="#" value="">
                                     </div>
 
-                                    <label for="range-step" class="col-md-2 control-label">Step</label>
+                                    <label for="rangestepleft" class="col-md-2 control-label">Step</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="range-step" placeholder="#" value="<?php echo $postdata != null ? "1" : ""; ?> ">
+                                        <input type="text" class="form-control" id="rangestepleft" placeholder="#" value="">
                                     </div>
                                 </div>
                             </div>
@@ -54,9 +54,9 @@
                     <div class="row yaxis-params">
                         <div class ="row">
                             <div class="form-group col-md-12">
-                                <label for="yaxisparams" class="col-md-4 control-label">Y-axis Parameter</label>
+                                <label for="yaxisparamsleft" class="col-md-4 control-label">Y-axis Parameter</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" id="yaxisparams" placeholder="Y- axis parameters">
+                                    <select class="form-control" id="yaxisparamsleft" placeholder="Y- axis parameters">
                                         <option  value="0">Please select...</option>
                                         <option value="PercentageLocalCommunication">Percentage Local Communication</option>
                                         <option value="PercentageEnergyforCommunication">Percentage Energy for Communication</option>
@@ -71,7 +71,7 @@
                     <div class ="row"><!--Start of User Action Params-->
                         <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-                                <input type="button" id="submitbutton" name="submitbutton"  ng-click="plotgraph()" class="btn btn-success" value="Plot graph" />
+                                <input type="button" id="submitbutton" name="submitbutton"  ng-click="plotgraph('left')" class="btn btn-success" value="Plot graph" />
                             </div>
                         </div>
                     </div><!--End of User Action Params-->
@@ -82,7 +82,7 @@
                                 <h3 class="panel-title">Results</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="chart_div" style="width: 440px; height: 240px;"></div>
+                                <div id="chart_divleft" style="width: 440px; height: 240px;"></div>
                             </div>
                         </div>
                         </div>
@@ -92,9 +92,9 @@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label for="existingMetaProfile" class="col-md-6 control-label">Meta Skeleton Profiles</label>
+                                <label for="existingMetaProfileRight" class="col-md-6 control-label">Meta Skeleton Profiles</label>
                                 <div class="col-md-6">
-                                    <select class="form-control"  id="existingMetaProfile" name="existingMetaProfile" ng-model="existingMetaProfile" ng-options="c.name for c in existingMetaProfileOptions">
+                                    <select class="form-control"  id="existingMetaProfileRight" name="existingMetaProfileRight" ng-model="existingMetaProfileRight" ng-options="c.name for c in existingMetaProfileOptions">
                                     </select>
                                 </div>
                             </div>
@@ -104,34 +104,34 @@
                         <!--Skelition Parameters Block-->
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="xaxisparams" class="col-md-4 control-label">X-axis Parameter</label>
+                                <label for="xaxisparamsright" class="col-md-4 control-label">X-axis Parameter</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" id="xaxisparams" placeholder="X- axis parameters">
+                                    <select class="form-control" id="xaxisparamsright" placeholder="X- axis parameters">
                                         <option   value="0">Please select...</option>
                                         <option value="MPIRanksperNode">MPI Ranks per Node</option>
-                                        <option value="2">Fan In</option>
-                                        <option value="3">Cores per Node</option>
+                                        <option value="FanIn">Fan In</option>
+                                        <option value="CoresperNode">Cores per Node</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="dataAnalyticsType" class="col-md-4 control-label">Range:</label>
+                                <label for="range" class="col-md-4 control-label">Range:</label>
                                 <div class="col-md-8">
-                                    <label for="range-start" class="col-md-2 control-label">From</label>
+                                    <label for="rangestartright" class="col-md-2 control-label">From</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="range-start" placeholder="#" value="<?php echo $postdata != null ? "1" : ""; ?> ">
+                                        <input type="text" class="form-control" id="rangestartright" placeholder="#" value="<?php echo $postdata != null ? "1" : ""; ?> ">
                                     </div>
 
-                                    <label for="range-end" class="col-md-2 control-label">To</label>
+                                    <label for="rangeendright" class="col-md-2 control-label">To</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="range-end" placeholder="#" value="<?php echo $postdata != null ? "16" : ""; ?> ">
+                                        <input type="text" class="form-control" id="rangeendright" placeholder="#" value="<?php echo $postdata != null ? "16" : ""; ?> ">
                                     </div>
 
-                                    <label for="range-step" class="col-md-2 control-label">Step</label>
+                                    <label for="rangestepright" class="col-md-2 control-label">Step</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="range-step" placeholder="#" value="<?php echo $postdata != null ? "1" : ""; ?> ">
+                                        <input type="text" class="form-control" id="rangestepright" placeholder="#" value="<?php echo $postdata != null ? "1" : ""; ?> ">
                                     </div>
                                 </div>
                             </div>
@@ -141,9 +141,9 @@
                     <div class="row yaxis-params">
                         <div class ="row">
                             <div class="form-group col-md-12">
-                                <label for="yaxisparams" class="col-md-4 control-label">Y-axis Parameter</label>
+                                <label for="yaxisparamsright" class="col-md-4 control-label">Y-axis Parameter</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" id="yaxisparams" placeholder="Y- axis parameters">
+                                    <select class="form-control" id="yaxisparamsright" placeholder="Y- axis parameters">
                                         <option  value="0">Please select...</option>
                                         <option value="PercentageLocalCommunication">Percentage Local Communication</option>
                                         <option value="PercentageEnergyforCommunication">Percentage Energy for Communication</option>
@@ -158,7 +158,7 @@
                     <div class ="row"><!--Start of User Action Params-->
                         <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-                                <input type="button" id="submitbutton" name="submitbutton"  ng-click="plotgraph()" class="btn btn-success" value="Plot graph" />
+                                <input type="button" id="submitbutton" name="submitbutton"  ng-click="plotgraph('right')" class="btn btn-success" value="Plot graph" />
                             </div>
                         </div>
                     </div><!--End of User Action Params-->
@@ -169,7 +169,7 @@
                                 <h3 class="panel-title">Results</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="chart_div" style="width: 440px; height: 240px;"></div>
+                                <div id="chart_divright" style="width: 440px; height: 240px;"></div>
                             </div>
                         </div>
                         </div>

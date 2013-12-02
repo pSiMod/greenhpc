@@ -35,7 +35,7 @@ class SimController extends AbstractActionController {
     public function aboutusAction() {
         return new ViewModel();
     }
-  
+
     public function saveAction() {
         $view = new ViewModel();
         $view->setTerminal(true);
@@ -184,6 +184,88 @@ class SimController extends AbstractActionController {
         return $view;
     }
 
+    public function plotAction() {
+        $view = new ViewModel();
+        $view->setTerminal(true);
+        $message = '';
+        $output = array();
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $metaprofile = $_POST['metaProfileName'];
+            $simulationpath = $this->simulationDir();
+            $dirpath = $simulationpath . '/' . $metaprofile;
+            if (is_dir($dirpath)) {
+                $paramsfile = $dirpath . '/params.dat';
+
+                $jsonfile = $dirpath . '/profile.json';
+                $jsonprofile = file_get_contents($jsonfile);
+                $arrayprofile = json_decode($jsonprofile);
+                $mpifilename = $arrayprofile->mpiActivityFile;
+
+                $mpiFilePath = $dirpath . '/' . $mpifilename;
+
+                $xparam = $_POST['xaxisparams'];
+                $yparam = $_POST['yaxisparams'];
+                $rangestart = $_POST['rangestart'];
+                $rangeend = $_POST['rangeend'];
+                $rangestep = $_POST['rangestep'];
+
+                $outputfile = $dirpath . "/output.dat";
+
+                $simlocation = realpath($simulationpath . '/../../bin') . "/./plot ";
+
+                $command = $simlocation . $paramsfile . " " . $mpiFilePath . " " . $outputfile . " ";
+                $command = $command . $xparam . " " . $yparam . " " . $rangestart . " " . $rangeend . " " . $rangestep;
+                $cmdoutput = array();
+                exec($command, $cmdoutput);
+                foreach ($cmdoutput as $line) {
+                    $value = explode(':', $line);
+                    array_push($output, [$value[0],$value[1]]);
+                }
+                {
+                    
+                }
+            } else {
+                $messge = "Profile doesnot exists";
+            }
+        }
+        $result = array("message"=> $message,"output"=>$output);
+        $view->message = json_encode($result);
+        return $view;
+    }
+
+    public function getprofileAction() {
+        $view = new ViewModel();
+        $view->setTerminal(true);
+        $profile = $_GET["profile"];
+        $dirlocation = $this->simulationDir();
+        $filepath = $dirlocation . '/' . $profile . '/profile.json';
+        $jsonparams = file_get_contents($filepath);
+        $view->jsondata = $jsonparams;
+        return $view;
+    }
+
+    public function getExistingProfilesAction() {
+
+        $view = new ViewModel();
+        $view->setTerminal(true);
+        $dirlocation = $this->simulationDir();
+        $cmd = "ls " . $dirlocation . '/';
+        $output = array();
+        exec($cmd, $output);
+
+        $newOutput = array();
+        foreach ($output as $key => $value) {
+            array_push($newOutput, ['name' => $value]);
+        }
+
+        $simplifiedArray = array_values($newOutput);
+        $newarray = array("existingMetaProfileOptions" => $simplifiedArray);
+        $view->param = json_encode($newarray);
+
+        return $view;
+    }
+
     private function convertToParam($postdata) {
 
         $params = "";
@@ -231,38 +313,6 @@ class SimController extends AbstractActionController {
     private function simulationDir() {
         $scriptlocation = substr($_SERVER['SCRIPT_FILENAME'], 0, strlen($_SERVER['SCRIPT_FILENAME']) - 10);
         return realpath($scriptlocation . '/../data/simulation');
-    }
-
-    public function getprofileAction() {
-        $view = new ViewModel();
-        $view->setTerminal(true);
-        $profile = $_GET["profile"];
-        $dirlocation = $this->simulationDir();
-        $filepath = $dirlocation . '/' . $profile . '/profile.json';
-        $jsonparams = file_get_contents($filepath);
-        $view->jsondata = $jsonparams;
-        return $view;
-    }
-
-    public function getExistingProfilesAction() {
-
-        $view = new ViewModel();
-        $view->setTerminal(true);
-        $dirlocation = $this->simulationDir();
-        $cmd = "ls " . $dirlocation . '/';
-        $output = array();
-        exec($cmd, $output);
-
-        $newOutput = array();
-        foreach ($output as $key => $value) {
-            array_push($newOutput, ['name' => $value]);
-        }
-
-        $simplifiedArray = array_values($newOutput);
-        $newarray = array("existingMetaProfileOptions" => $simplifiedArray);
-        $view->param = json_encode($newarray);
-
-        return $view;
     }
 
 }
