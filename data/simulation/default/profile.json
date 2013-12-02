@@ -1,1 +1,115 @@
-{"analyticsWorkflow":{"name":"Topology analytics"},"dataAnalyticsType":{"name":"In-transit"},"archParams":[{"name":"numberOfCores","label":"CPU Cores","type":"text","value":"0"},{"name":"coresPerNode","label":"Cores per Node","type":"text","value":"0"},{"name":"cpuIdlePower","label":"CPU Idle power","type":"text","value":"0"},{"name":"cpuActivePower","label":"CPU Active Power","type":"text","value":"0"},{"name":"memIdlePower","label":"Memory Idle Power","type":"text","value":"0"},{"name":"memActivePower","label":"Memory Active Power","type":"text","value":"0"},{"name":"nicIdlePower","label":"NIC Idle Power","type":"text","value":"0"},{"name":"nicActivePower","label":"NIC Active Power","type":"text","value":"0"},{"name":"miscActivePower","label":"Misc Active Power","type":"text","value":"0"},{"name":"networkType","label":"Network Type","type":"radio","options":[{"name":"Gemini"},{"name":"Infiniband"}],"value":"Gemini"}],"runtimeParams":[{"name":"mpiRanksNode","label":"MPI Ranks Per Node","type":"text","value":"0"},{"name":"mpiRankMappingPolicy","label":"MPI rank mapping Policy","type":"radio","options":[{"name":"Consecutive"},{"name":"Random"}],"value":"Consecutive"}],"appParams":[{"name":"executionTime","label":"Execution Time(s)","type":"text","value":"0"},{"name":"cpuActivity","label":"CPU Activity(1-100)","type":"text","value":"0"},{"name":"memActivity","label":"Memory Activity(1-100)","type":"text","value":"0"}],"mpiActivityFile":null}
+{
+    "analyticsWorkflow": {
+        "name": "Topology analytics"
+    },
+    "dataAnalyticsType": {
+        "name": "In-transit"
+    },
+    "archParams": [
+        {
+            "name": "CPUCores",
+            "label": "CPU Cores",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "CoresperNode",
+            "label": "Cores per Node",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "StaticPower",
+            "label": "Static Power",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "PowerNIC",
+            "label": "Power NIC",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "PowerCPU",
+            "label": "Power CPU",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "PowerMemory",
+            "label": "Power Memory",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "BWNetwork",
+            "label": "BW Network",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "BWMemory",
+            "label": "BW Memory",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "NetworkType",
+            "label": "Network Type",
+            "type": "radio",
+            "options": [
+                {
+                    "name": "Gemini"
+                },
+                {
+                    "name": "Infiniband"
+                }
+            ],
+            "value": "Gemini"
+        }
+    ],
+    "runtimeParams": [
+        {
+            "name": "MPIRanksperNode",
+            "label": "MPI Ranks per Node",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "MPIrankmappingPolicy",
+            "label": "MPI rank mapping Policy",
+            "type": "radio",
+            "options": [
+                {
+                    "name": "Consecutive"
+                },
+                {
+                    "name": "Random"
+                }
+            ],
+            "value": "Consecutive"
+        }
+    ],
+    "appParams": [
+        {
+            "name": "ExecutionTime(s)",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "IntegerOperations",
+            "label": "Integer Operations",
+            "type": "text",
+            "value": "0"
+        },
+        {
+            "name": "MemoryOperations",
+            "label": "Memory Operations",
+            "type": "text",
+            "value": "0"
+        }
+    ],
+    "mpiActivityFile": null
+}

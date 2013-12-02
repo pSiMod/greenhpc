@@ -59,7 +59,8 @@ simapp.controller('paramsCtrl', function($scope, $http) {
             $scope.runtimeParams = data["runtimeParams"];
             $scope.appParams = data["appParams"];
             $scope.mpiActivityFile = data['mpiActivityFile'];
-
+            $(".simulationResult").html("");
+            $scope.opmessage ="";
         }).error(function(e) {
             alert('Unable to retrieve the fields in default functional layout');
         });
@@ -113,7 +114,7 @@ simapp.controller('paramsCtrl', function($scope, $http) {
         fd.append('archParams', angular.toJson($scope.archParams));
         fd.append('runtimeParams', angular.toJson($scope.runtimeParams));
         fd.append('appParams', angular.toJson($scope.appParams));
-        fd.append('mpiActivityFile', $('#mpiActivityFile').val());
+        fd.append('mpiActivityFile', $scope.mpiActivityFile);
         $http.post('/sim/simulate',
                 fd, {
                     withCredentials: true,
@@ -128,29 +129,28 @@ simapp.controller('paramsCtrl', function($scope, $http) {
 
     $scope.save = function() {
 
-        var f = document.getElementById('simulationform');
-        var fd = new FormData(f);
-        if($scope.existingMetaProfile.name == "default"){
+        var fd = new FormData();
+        if ($scope.existingMetaProfile.name == "default") {
             alert('Cannot change the default profile. Use save as to create a new profile')
         }
-        else{
-        fd.append('existingMetaProfile', angular.toJson($scope.existingMetaProfile));
-        fd.append('analyticsWorkflow', angular.toJson($scope.analyticsWorkflow));
-        fd.append('dataAnalyticsType', angular.toJson($scope.dataAnalyticsType));
-        fd.append('archParams', angular.toJson($scope.archParams));
-        fd.append('runtimeParams', angular.toJson($scope.runtimeParams));
-        fd.append('appParams', angular.toJson($scope.appParams));
-        fd.append('mpiActivityFile', $('#mpiActivityFile').val());
+        else {
+            fd.append('existingMetaProfile', angular.toJson($scope.existingMetaProfile));
+            fd.append('analyticsWorkflow', angular.toJson($scope.analyticsWorkflow));
+            fd.append('dataAnalyticsType', angular.toJson($scope.dataAnalyticsType));
+            fd.append('archParams', angular.toJson($scope.archParams));
+            fd.append('runtimeParams', angular.toJson($scope.runtimeParams));
+            fd.append('appParams', angular.toJson($scope.appParams));
+            fd.append('mpiActivityFile', $scope.mpiActivityFile);
 
-        $http.post('/sim/save', fd, {
-            withCredentials: true,
-            headers: {'Content-Type': undefined},
-            transformRequest: angular.identity
-        }).success(function(data) {
-            $scope.opmessage = data;
-        }).error(function(e) {
-            $scope.opmessage = data;
-        });
+            $http.post('/sim/save', fd, {
+                withCredentials: true,
+                headers: {'Content-Type': undefined},
+                transformRequest: angular.identity
+            }).success(function(data) {
+                $scope.opmessage = data;
+            }).error(function(e) {
+                $scope.opmessage = data;
+            });
         }
     };
 
@@ -158,15 +158,14 @@ simapp.controller('paramsCtrl', function($scope, $http) {
         newparam = $scope.newskeletonName.replace(/\s/g, '');
         if (newparam != "")
         {
-            var f = document.getElementById('simulationform');
-            var fd = new FormData(f);
+            var fd = new FormData();
             fd.append('newMetaProfileName', angular.toJson(newparam));
             fd.append('analyticsWorkflow', angular.toJson($scope.analyticsWorkflow));
             fd.append('dataAnalyticsType', angular.toJson($scope.dataAnalyticsType));
             fd.append('archParams', angular.toJson($scope.archParams));
             fd.append('runtimeParams', angular.toJson($scope.runtimeParams));
             fd.append('appParams', angular.toJson($scope.appParams));
-            fd.append('mpiActivityFile', $('#mpiActivityFile').val());
+            fd.append('mpiActivityFile', "");
             $http.post('/sim/saveas',
                     fd, {
                         withCredentials: true,
@@ -174,14 +173,20 @@ simapp.controller('paramsCtrl', function($scope, $http) {
                         transformRequest: angular.identity
                     }).success(function(data) {
                 $scope.opmessage = data;
+                $http.get('/sim/getexistingprofiles').success(function(data) {
+                    $scope.existingMetaProfileOptions = data['existingMetaProfileOptions'];
+                    $scope.existingMetaProfile = $scope.searchValue($scope.existingMetaProfileOptions, {'name': 'default'});
+                }).error(function() {
+
+                });
             }).error(function(e) {
                 $scope.opmessage = "Error while saving";
             });
         }
         else
             alert('Not able to save. Please try again!');
-        
-                $('#saveasModel').modal('hide');
+
+        $('#saveasModel').modal('hide');
         $scope.newskeletonName = "";
     };
 });
