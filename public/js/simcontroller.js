@@ -175,7 +175,7 @@ simapp.controller('paramsCtrl', function($scope, $http) {
                 $scope.opmessage = data;
                 $http.get('/sim/getexistingprofiles').success(function(data) {
                     $scope.existingMetaProfileOptions = data['existingMetaProfileOptions'];
-                    $scope.existingMetaProfile = $scope.searchValue($scope.existingMetaProfileOptions, {'name': 'default'});
+                    $scope.existingMetaProfile = $scope.searchValue($scope.existingMetaProfileOptions, {'name': newparam});
                 }).error(function() {
 
                 });
