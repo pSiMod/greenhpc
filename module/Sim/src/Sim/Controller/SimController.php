@@ -137,7 +137,8 @@ class SimController extends AbstractActionController {
             $simulationPath = $this->simulationDir();
 
             //make a folder with current date if it dsnt exists.
-            $dirname = $_POST["existingMetaProfile"];
+            $existingMetaProfile = json_decode($_POST['existingMetaProfile']);
+            $dirname = $existingMetaProfile->name;
             $dirpath = $simulationPath . '/' . $dirname;
             if (!is_dir($dirpath)) {
                 $success = false;
@@ -241,11 +242,11 @@ class SimController extends AbstractActionController {
         return json_encode($postjson);
     }
 
-    public function simulationDir() {
+    private function simulationDir() {
         $scriptlocation = substr($_SERVER['SCRIPT_FILENAME'], 0, strlen($_SERVER['SCRIPT_FILENAME']) - 10);
         return realpath($scriptlocation . '/../data/simulation');
     }
-
+    
     public function getprofileAction() {
         $view = new ViewModel();
         $view->setTerminal(true);

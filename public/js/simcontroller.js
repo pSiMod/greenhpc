@@ -107,6 +107,13 @@ simapp.controller('paramsCtrl', function($scope, $http) {
     $scope.simulate = function() {
         var f = document.getElementById('simulationform');
         var fd = new FormData(f);
+        fd.append('existingMetaProfile', angular.toJson($scope.existingMetaProfile));
+        fd.append('analyticsWorkflow', angular.toJson($scope.analyticsWorkflow));
+        fd.append('dataAnalyticsType', angular.toJson($scope.dataAnalyticsType));
+        fd.append('archParams', angular.toJson($scope.archParams));
+        fd.append('runtimeParams', angular.toJson($scope.runtimeParams));
+        fd.append('appParams', angular.toJson($scope.appParams));
+        fd.append('mpiActivityFile', $('#mpiActivityFile').val());
         $http.post('/sim/simulate',
                 fd, {
                     withCredentials: true,
