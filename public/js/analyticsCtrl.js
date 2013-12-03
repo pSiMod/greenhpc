@@ -11,6 +11,7 @@ function drawChart(arraydata, plotside) {
     chart.draw(data, options);
 }
 
+
 simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
 
     $scope.existingMetaProfileOptions = [{'name': 'Topology-Titan'}];
@@ -61,6 +62,7 @@ simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
   
     $scope.plotgraph = function(side) {
         $('#chart_div'.concat(side)).html('');
+          $('#loading'.concat(side)).show();
         var fd = FormData();
         if (side == 'left')
             fd.append('metaProfileName', $scope.existingMetaProfileLeft.name);
@@ -79,6 +81,7 @@ simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
                     transformRequest: angular.identity
                 }
         ).success(function(data) {
+              $('#loading'.concat(side)).hide();
             if(data.message !== "")
             {
                 alert(data.message);
@@ -91,6 +94,7 @@ simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
             }
                 drawChart($scope.arraydata, side);
         }).error(function(e) {
+              $('#loading'.concat(side)).hide();
             alert('Error!!. Please try again');
         });
     };
