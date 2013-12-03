@@ -3,7 +3,9 @@ google.load("visualization", "1", {packages: ["corechart"]});
 function drawChart(arraydata, plotside) {
     var data = google.visualization.arrayToDataTable(arraydata);
     var options = {
-        title: 'Performance'
+        title: 'Performance',
+        hAxis:{title:$('#xaxisparams'.concat(plotside)).val()},
+        vAxis:{title:$('#yaxisparams'.concat(plotside)).val()}
     };
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'.concat(plotside)));
     chart.draw(data, options);
@@ -56,8 +58,9 @@ simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
             alert('Unable to retrieve the fields in default functional layout');
         });
     };
-
+  
     $scope.plotgraph = function(side) {
+        $('#chart_div'.concat(side)).html('');
         var fd = FormData();
         if (side == 'left')
             fd.append('metaProfileName', $scope.existingMetaProfileLeft.name);
