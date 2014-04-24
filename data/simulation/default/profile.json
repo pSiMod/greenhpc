@@ -1,115 +1,164 @@
 {
-    "analyticsWorkflow": {
-        "name": "Topology analytics"
+    "workflowParams": {
+        "name": "default",
+        "parameters": [
+            {
+                "name": "analyticsWorkflow",
+                "label": "Analytics Workflow",
+                "type": "select",
+                "value": {"name": "Topology analytics"},
+                "options": "analyticsWorkflowOptions"
+            },
+            {
+                "name": "dataAnalyticsType",
+                "label": "Data Analytics Type",
+                "type": "select",
+                "value": {"name": "In-situ"},
+                "options": "dataAnalyticsTypeOptions"
+            },
+            {
+                "name": "stagingType",
+                "label": "Staging",
+                "type": "select",
+                "value": {"name": "DRAM"},
+                "options": "stagingTypeOptions"
+            },
+            {
+                "name": "dataSpeculation",
+                "label": "Data Speculation",
+                "type": "text",
+                "value": "0"
+            },
+            {
+                "name": "startsAt",
+                "label": "Analysis starts at",
+                "type": "text",
+                "value": "0"
+            }
+
+        ]
     },
-    "dataAnalyticsType": {
-        "name": "In-transit"
+    "archParams": {
+        "name": "default",
+        "parameters": [
+            {
+                "name": "CPUCores",
+                "label": "CPU Cores",
+                "type": "text",
+                "value": "0"
+            },
+            {
+                "name": "CoresperNode",
+                "label": "Cores per Node",
+                "type": "text",
+                "value": "0"
+            },
+            {
+                "name": "StaticPower",
+                "label": "Static Power",
+                "type": "text",
+                "value": "0"
+            },
+            {
+                "name": "PowerNIC",
+                "label": "Power NIC",
+                "type": "text",
+                "value": "0"
+            },
+            {
+                "name": "PowerCPU",
+                "label": "Power CPU",
+                "type": "text",
+                "value": "0"
+            },
+            {
+                "name": "PowerMemory",
+                "label": "Power Memory",
+                "type": "text",
+                "value": "0"
+            },
+            {
+                "name": "BWNetwork",
+                "label": "BW Network",
+                "type": "text",
+                "value": "0"
+            },
+            {
+                "name": "BWMemory",
+                "label": "BW Memory",
+                "type": "text",
+                "value": "0"
+            },
+            {
+                "name": "NetworkType",
+                "label": "Network Type",
+                "type": "radio",
+                "options": [
+                    {
+                        "name": "Gemini"
+                    },
+                    {
+                        "name": "Infiniband"
+                    }
+                ],
+                "value": "Gemini"
+            }
+        ]
     },
-    "archParams": [
-        {
-            "name": "CPUCores",
-            "label": "CPU Cores",
-            "type": "text",
-            "value": "0"
-        },
-        {
-            "name": "CoresperNode",
-            "label": "Cores per Node",
-            "type": "text",
-            "value": "0"
-        },
-        {
-            "name": "StaticPower",
-            "label": "Static Power",
-            "type": "text",
-            "value": "0"
-        },
-        {
-            "name": "PowerNIC",
-            "label": "Power NIC",
-            "type": "text",
-            "value": "0"
-        },
-        {
-            "name": "PowerCPU",
-            "label": "Power CPU",
-            "type": "text",
-            "value": "0"
-        },
-        {
-            "name": "PowerMemory",
-            "label": "Power Memory",
-            "type": "text",
-            "value": "0"
-        },
-        {
-            "name": "BWNetwork",
-            "label": "BW Network",
-            "type": "text",
-            "value": "0"
-        },
-        {
-            "name": "BWMemory",
-            "label": "BW Memory",
-            "type": "text",
-            "value": "0"
-        },
-        {
-            "name": "NetworkType",
-            "label": "Network Type",
-            "type": "radio",
-            "options": [
+    "runtimeParams": {
+        "name": "default",
+        "analysis": {
+            "name": "Analysis",
+            "tagName": "appAnalysis",
+            "parameters": [
                 {
-                    "name": "Gemini"
+                    "name": "analysisMpiRanksNode",
+                    "label": "MPI Ranks Per Node",
+                    "type": "text",
+                    "value": "0"
                 },
                 {
-                    "name": "Infiniband"
+                    "name": "analysisMpiRankMappingPolicy",
+                    "label": "MPI rank mapping Policy",
+                    "type": "radio",
+                    "options": [
+                        {
+                            "name": "Consecutive"
+                        },
+                        {
+                            "name": "Random"
+                        }
+                    ],
+                    "value": "Random"
                 }
-            ],
-            "value": "Gemini"
+            ]
         }
-    ],
-    "runtimeParams": [
-        {
-            "name": "MPIRanksperNode",
-            "label": "MPI Ranks per Node",
-            "type": "text",
-            "value": "0"
-        },
-        {
-            "name": "MPIrankmappingPolicy",
-            "label": "MPI rank mapping Policy",
-            "type": "radio",
-            "options": [
-                {
-                    "name": "Consecutive"
+    },
+    "appParams": {
+        "name": "default",
+        "analysis": {
+            "name": "Analysis",
+            "tagName": "appAnalysis",
+            "parameters": [{
+                    "name": "AnalysisExecutionTime(s)",
+                    "label": "Execution Time(s)",
+                    "type": "text",
+                    "value": "0"
                 },
                 {
-                    "name": "Random"
+                    "name": "AnalysisIntegerOperations",
+                    "label": "Integer Operations",
+                    "type": "text",
+                    "value": "0"
+                },
+                {
+                    "name": "AnalysisMemoryOperations",
+                    "label": "Memory Operations",
+                    "type": "text",
+                    "value": "0"
                 }
-            ],
-            "value": "Consecutive"
+            ]
         }
-    ],
-    "appParams": [
-        {
-            "name": "ExecutionTime(s)",
-            "label": "Execution Time(s)",
-            "type": "text",
-            "value": "0"
-        },
-        {
-            "name": "IntegerOperations",
-            "label": "Integer Operations",
-            "type": "text",
-            "value": "0"
-        },
-        {
-            "name": "MemoryOperations",
-            "label": "Memory Operations",
-            "type": "text",
-            "value": "0"
-        }
-    ],
+    },
     "mpiActivityFile": null
 }

@@ -42,6 +42,45 @@ class SimController extends AbstractActionController {
         $request = $this->getRequest();
         $message = "";
         if ($request->isPost()) {
+            $testName = $_GET["name"];
+            if($testName == "workflowParamProfile")
+            {
+                 $workflowParamProfile = $_POST["workflowParamProfile"];
+                 $filepath = $this->simulationDir() . '/../workflowParamProfile.json';
+                 $file = fopen($filepath,'w');               
+                 fwrite($file,$workflowParamProfile);
+                 fclose($file);
+                 $message = 'Successfully saved workflow profile ';
+            }
+            elseif($testName == "archParamProfile")
+            {
+                 $archParamProfile = $_POST["archParamProfile"];
+                 $filepath = $this->simulationDir() . '/../archParamProfile.json';
+                 $file = fopen($filepath,'w');               
+                 fwrite($file,$archParamProfile);
+                 fclose($file);
+                 $message = 'Successfully saved architecture profile ';
+            }
+            elseif($testName == "applicationParamProfile")
+            {
+                 $archParamProfile = $_POST["applicationParamProfile"];
+                 $filepath = $this->simulationDir() . '/../applicationParamProfile.json';
+                 $file = fopen($filepath,'w');               
+                 fwrite($file,$archParamProfile);
+                 fclose($file);
+                 $message = 'Successfully saved application profile';
+            }
+            elseif($testName == "runtimeParamProfile")
+            {
+                 $archParamProfile = $_POST["runtimeParamProfile"];
+                 $filepath = $this->simulationDir() . '/../runtimeParamProfile.json';
+                 $file = fopen($filepath,'w');               
+                 fwrite($file,$archParamProfile);
+                 fclose($file);
+                 $message = 'Successfully saved runtime profile';
+            }
+            else
+            {
             $existingMetaProfile = json_decode($_POST['existingMetaProfile']);
             $directoryname = $existingMetaProfile->name;
             $dirpath = $this->simulationDir() . '/' . $directoryname;
@@ -56,16 +95,17 @@ class SimController extends AbstractActionController {
 
                 // create a params.dat file which will contain the above generted
                 //value pairs.
-                $params = $this->convertToParam($_POST);
+                /*$params = $this->convertToParam($_POST);
                 $paramsPath .= $dirpath . '/params.dat';
                 $file = fopen($paramsPath, 'w');
                 fwrite($file, $params);
-                fclose($file);
+                fclose($file);*/
 
                 $message = 'Successfully Saved to ' . $directoryname;
             } else {
                 $message = "Profile doesnt exist on server";
             }
+        }
         } else {
             $message = 'Unable to save';
         }
@@ -239,8 +279,32 @@ class SimController extends AbstractActionController {
         $view->setTerminal(true);
         $profile = $_GET["profile"];
         $dirlocation = $this->simulationDir();
+        $jsonparams = "";
+        if($profile == "workflowProfiles")
+        {
+            $filepath = $dirlocation . '/../workflowParamProfile.json';
+            $jsonparams = file_get_contents($filepath);
+        }
+        elseif($profile == "runtimeProfiles")
+        {
+            $filepath = $dirlocation . '/../runtimeParamProfile.json';
+            $jsonparams = file_get_contents($filepath);
+        }
+        elseif($profile == "appProfiles")
+        {
+            $filepath = $dirlocation . '/../applicationParamProfile.json';
+            $jsonparams = file_get_contents($filepath);
+        }
+        elseif($profile == "archProfiles")
+        {
+            $filepath = $dirlocation . '/../archParamProfile.json';
+            $jsonparams = file_get_contents($filepath);
+        }
+        else
+        {
         $filepath = $dirlocation . '/' . $profile . '/profile.json';
         $jsonparams = file_get_contents($filepath);
+        }
         $view->jsondata = $jsonparams;
         return $view;
     }
@@ -300,8 +364,7 @@ class SimController extends AbstractActionController {
 
     private function convertToJson($postdata) {
         $postjson = array(
-            "analyticsWorkflow" => Json::decode($postdata['analyticsWorkflow']),
-            "dataAnalyticsType" => Json::decode($postdata['dataAnalyticsType']),
+            "workflowParams" => Json::decode($postdata['workflowParams']),
             "archParams" => Json::decode($postdata['archParams']),
             "runtimeParams" => json_decode($postdata['runtimeParams']),
             "appParams" => json_decode($postdata['appParams']),

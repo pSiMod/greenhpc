@@ -1,0 +1,299 @@
+{
+  "Topology analytics": {
+    "default": {
+      "name": "default",
+      "analysis": {
+        "name": "Analysis",
+        "tagName": "appAnalysis",
+        "parameters": [
+          {
+            "name": "analysisExecutionTime(s)",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisIntegerOperations",
+            "label": "Integer Operations",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisMemoryOperations",
+            "label": "Memory Operations",
+            "type": "text",
+            "value": "0"
+          }
+        ]
+      }
+    }
+  },
+  "Simulation, Topology Analytics": {
+    "default": {
+      "name": "default",
+      "analysis": {
+        "name": "Analysis",
+        "tagName": "appAnalysis",
+        "parameters": [
+          {
+            "name": "analysisExecutionTime(s)",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisIntegerOperations",
+            "label": "Integer Operations",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisMemoryOperations",
+            "label": "Memory Operations",
+            "type": "text",
+            "value": "0"
+          }
+        ]
+      },
+      "simulation": {
+        "name": "Simulation",
+        "tagName": "appSimulation",
+        "parameters": [
+          {
+            "name": "simulationExecutionTime(s)",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "simulationIntegerOperations",
+            "label": "Integer Operations",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "simulationMemoryOperations",
+            "label": "Memory Operations",
+            "type": "text",
+            "value": "0"
+          }
+        ]
+      }
+    },
+    "sadfasdf": {
+      "name": "sadfasdf",
+      "analysis": {
+        "name": "Analysis",
+        "tagName": "appAnalysis",
+        "parameters": [
+          {
+            "name": "analysisExecutionTime(s)",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisIntegerOperations",
+            "label": "Integer Operations",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisMemoryOperations",
+            "label": "Memory Operations",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisasdfasdf",
+            "label": "asdfasdf",
+            "type": "text",
+            "value": "0"
+          }
+        ]
+      },
+      "simulation": {
+        "name": "Simulation",
+        "tagName": "appSimulation",
+        "parameters": [
+          {
+            "name": "simulationExecutionTime(s)",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "simulationIntegerOperations",
+            "label": "Integer Operations",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "simulationMemoryOperations",
+            "label": "Memory Operations",
+            "type": "text",
+            "value": "0"
+          }
+        ]
+      }
+    }
+  },
+  "Simulation, Topo, UQ Analytics": {
+    "default": {
+      "name": "default",
+      "analysis": {
+        "name": "Analysis",
+        "tagName": "appAnalysis",
+        "parameters": [
+          {
+            "name": "analysisExecutionTime(s)",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisIntegerOperations",
+            "label": "Integer Operations",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisMemoryOperations",
+            "label": "Memory Operations",
+            "type": "text",
+            "value": "0"
+          }
+        ]
+      },
+      "simulation": {
+        "name": "Simulation",
+        "tagName": "appSimulation",
+        "parameters": [
+          {
+            "name": "simulationExecutionTime(s)",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "simulationIntegerOperations",
+            "label": "Integer Operations",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "simulationMemoryOperations",
+            "label": "Memory Operations",
+            "type": "text",
+            "value": "0"
+          }
+        ]
+      },
+      "uq": {
+        "name": "UQ",
+        "tagName": "appUQ",
+        "parameters": [
+          {
+            "name": "uqExecutionTime(s)",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "uqIntegerOperations",
+            "label": "Integer Operations",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "uqMemoryOperations",
+            "label": "Memory Operations",
+            "type": "text",
+            "value": "0"
+          }
+        ]
+      }
+    },
+    "New App Profile": {
+      "name": "New App Profile",
+      "analysis": {
+        "name": "Analysis",
+        "tagName": "appAnalysis",
+        "parameters": [
+          {
+            "name": "analysisExecutionTime(s)",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "233"
+          },
+          {
+            "name": "analysisIntegerOperations",
+            "label": "Integer Operations",
+            "type": "text",
+            "value": "123"
+          },
+          {
+            "name": "analysisMemoryOperations",
+            "label": "Memory Operations",
+            "type": "text",
+            "value": "123"
+          },
+          {
+            "name": "analysisMemorySpeed",
+            "label": "Memory Speed",
+            "type": "text",
+            "value": "333"
+          }
+        ]
+      },
+      "simulation": {
+        "name": "Simulation",
+        "tagName": "appSimulation",
+        "parameters": [
+          {
+            "name": "simulationExecutionTime(s)",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "simulationIntegerOperations",
+            "label": "Integer Operations",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "simulationMemoryOperations",
+            "label": "Memory Operations",
+            "type": "text",
+            "value": "0"
+          }
+        ]
+      },
+      "uq": {
+        "name": "UQ",
+        "tagName": "appUQ",
+        "parameters": [
+          {
+            "name": "uqExecutionTime(s)",
+            "label": "Execution Time(s)",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "uqIntegerOperations",
+            "label": "Integer Operations",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "uqMemoryOperations",
+            "label": "Memory Operations",
+            "type": "text",
+            "value": "0"
+          }
+        ]
+      }
+    }
+  }
+}

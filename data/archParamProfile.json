@@ -1,0 +1,106 @@
+{
+  "default": {
+    "name": "default",
+    "parameters": [
+      {
+        "name": "CPUCores",
+        "label": "CPU Cores",
+        "type": "text",
+        "value": "0"
+      },
+      {
+        "name": "CoresperNode",
+        "label": "Cores per Node",
+        "type": "text",
+        "value": "0"
+      },
+      {
+        "name": "StaticPower",
+        "label": "Static Power",
+        "type": "text",
+        "value": "0"
+      },
+      {
+        "name": "PowerNIC",
+        "label": "Power NIC",
+        "type": "text",
+        "value": "0"
+      },
+      {
+        "name": "PowerCPU",
+        "label": "Power CPU",
+        "type": "text",
+        "value": "0"
+      },
+      {
+        "name": "PowerMemory",
+        "label": "Power Memory",
+        "type": "text",
+        "value": "0"
+      },
+      {
+        "name": "BWNetwork",
+        "label": "BW Network",
+        "type": "text",
+        "value": "0"
+      },
+      {
+        "name": "BWMemory",
+        "label": "BW Memory",
+        "type": "text",
+        "value": "0"
+      },
+      {
+        "name": "NetworkType",
+        "label": "Network Type",
+        "type": "radio",
+        "options": [
+          {
+            "name": "Gemini"
+          },
+          {
+            "name": "Infiniband"
+          }
+        ],
+        "value": "Gemini"
+      }
+    ]
+  },
+  "New Arch Profile": {
+    "name": "New Arch Profile",
+    "parameters": [
+      {
+        "name": "CPUCores",
+        "label": "CPU Cores",
+        "type": "text",
+        "value": "qw"
+      },
+      {
+        "name": "CoresperNode",
+        "label": "Cores per Node",
+        "type": "text",
+        "value": "qwe"
+      },
+      {
+        "name": "BWMemory",
+        "label": "BW Memory",
+        "type": "text",
+        "value": "0"
+      },
+      {
+        "name": "NetworkType",
+        "label": "Network Type",
+        "type": "radio",
+        "options": [
+          {
+            "name": "Gemini"
+          },
+          {
+            "name": "Infiniband"
+          }
+        ],
+        "value": "Infiniband"
+      }
+    ]
+  }
+}

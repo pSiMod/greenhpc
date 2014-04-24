@@ -243,3 +243,37 @@ border-radius: 4px 4px 4px 4px;
   left: 10px;
   top: 10px;
 }
+
+.panel-title-mod {
+    font-size: 14px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.panel-heading-mod {
+
+    padding: 2px 10px;
+}
+
+.nav-mod > li > a {
+    display: block;
+    padding: 2px 5px;
+    position: relative;
+}
+.tab-pane-mod{
+    padding:5px;
+}
+.heading-center-adj{
+    padding-top: 6px;
+}
+.button-group-xs-mod{
+    padding-left: 5px;
+}
+
+.btn-fixed-width{
+    max-width: 75px;
+    overflow: hidden;
+    white-space: nowrap;
+    display:block;
+    text-overflow: ellipsis;
+}

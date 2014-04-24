@@ -1,0 +1,266 @@
+{
+  "Topology analytics": {
+    "default": {
+      "name": "default",
+      "analysis": {
+        "name": "Analysis",
+        "tagName": "runAnalysis",
+        "parameters": [
+          {
+            "name": "analysisMpiRanksNode",
+            "label": "MPI Ranks Per Node",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisMpiRankMappingPolicy",
+            "label": "MPI rank mapping Policy",
+            "type": "radio",
+            "options": [
+              {
+                "name": "Consecutive"
+              },
+              {
+                "name": "Random"
+              }
+            ],
+            "value": "Random"
+          }
+        ]
+      }
+    }
+  },
+  "Simulation, Topology Analytics": {
+    "default": {
+      "name": "default",
+      "analysis": {
+        "name": "Analysis",
+        "tagName": "runAnalysis",
+        "parameters": [
+          {
+            "name": "analysisMpiRanksNode",
+            "label": "MPI Ranks Per Node",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisMpiRankMappingPolicy",
+            "label": "MPI rank mapping Policy",
+            "type": "radio",
+            "options": [
+              {
+                "name": "Consecutive"
+              },
+              {
+                "name": "Random"
+              }
+            ],
+            "value": "Random"
+          }
+        ]
+      },
+      "simulation": {
+        "name": "Simulation",
+        "tagName": "runSimulation",
+        "parameters": [
+          {
+            "name": "simulationMpiRanksNode",
+            "label": "MPI Ranks Per Node",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "simulationMpiRankMappingPolicy",
+            "label": "MPI rank mapping Policy",
+            "type": "radio",
+            "options": [
+              {
+                "name": "Consecutive"
+              },
+              {
+                "name": "Random"
+              }
+            ],
+            "value": "Random"
+          }
+        ]
+      }
+    }
+  },
+  "Simulation, Topo, UQ Analytics": {
+    "default": {
+      "name": "default",
+      "analysis": {
+        "name": "Analysis",
+        "tagName": "runAnalysis",
+        "parameters": [
+          {
+            "name": "analysisMpiRanksNode",
+            "label": "MPI Ranks Per Node",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisMpiRankMappingPolicy",
+            "label": "MPI rank mapping Policy",
+            "type": "radio",
+            "options": [
+              {
+                "name": "Consecutive"
+              },
+              {
+                "name": "Random"
+              }
+            ],
+            "value": "Random"
+          }
+        ]
+      },
+      "simulation": {
+        "name": "Simulation",
+        "tagName": "runSimulation",
+        "parameters": [
+          {
+            "name": "simulationMpiRanksNode",
+            "label": "MPI Ranks Per Node",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "simulationMpiRankMappingPolicy",
+            "label": "MPI rank mapping Policy",
+            "type": "radio",
+            "options": [
+              {
+                "name": "Consecutive"
+              },
+              {
+                "name": "Random"
+              }
+            ],
+            "value": "Random"
+          }
+        ]
+      },
+      "uq": {
+        "name": "UQ",
+        "tagName": "runUQ",
+        "parameters": [
+          {
+            "name": "uqmpiRanksNode",
+            "label": "MPI Ranks Per Node",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "uqmpiRankMappingPolicy",
+            "label": "MPI rank mapping Policy",
+            "type": "radio",
+            "options": [
+              {
+                "name": "Consecutive"
+              },
+              {
+                "name": "Random"
+              }
+            ],
+            "value": "Random"
+          }
+        ]
+      }
+    },
+    "New Runtime Profile": {
+      "name": "New Runtime Profile",
+      "analysis": {
+        "name": "Analysis",
+        "tagName": "runAnalysis",
+        "parameters": [
+          {
+            "name": "analysisMpiRanksNode",
+            "label": "MPI Ranks Per Node",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "analysisMpiRankMappingPolicy",
+            "label": "MPI rank mapping Policy",
+            "type": "radio",
+            "options": [
+              {
+                "name": "Consecutive"
+              },
+              {
+                "name": "Random"
+              }
+            ],
+            "value": "Random"
+          },
+          {
+            "name": "analysisRakingOrder",
+            "label": "Raking Order",
+            "type": "text",
+            "value": "0"
+          }
+        ]
+      },
+      "simulation": {
+        "name": "Simulation",
+        "tagName": "runSimulation",
+        "parameters": [
+          {
+            "name": "simulationMpiRanksNode",
+            "label": "MPI Ranks Per Node",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "simulationMpiRankMappingPolicy",
+            "label": "MPI rank mapping Policy",
+            "type": "radio",
+            "options": [
+              {
+                "name": "Consecutive"
+              },
+              {
+                "name": "Random"
+              }
+            ],
+            "value": "Random"
+          },
+          {
+            "name": "simulationNodeParams",
+            "label": "Node Params",
+            "type": "text",
+            "value": "0"
+          }
+        ]
+      },
+      "uq": {
+        "name": "UQ",
+        "tagName": "runUQ",
+        "parameters": [
+          {
+            "name": "uqmpiRanksNode",
+            "label": "MPI Ranks Per Node",
+            "type": "text",
+            "value": "0"
+          },
+          {
+            "name": "uqmpiRankMappingPolicy",
+            "label": "MPI rank mapping Policy",
+            "type": "radio",
+            "options": [
+              {
+                "name": "Consecutive"
+              },
+              {
+                "name": "Random"
+              }
+            ],
+            "value": "Consecutive"
+          }
+        ]
+      }
+    }
+  }
+}
