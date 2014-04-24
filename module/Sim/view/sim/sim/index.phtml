@@ -1,40 +1,58 @@
+
+
+
 <div>
 
     <div ng-controller="paramsCtrl">
 
         <form role="form" id="simulationform" action="" class="form-horizontal" method="POST" enctype="multipart/form-data">
-
             <div class="row">
                 <div class="col-md-6 col-md-offset-2">
                     <div class="form-group">
                         <label for="existingMetaProfile" class="col-md-6 control-label">Meta Skeleton Profiles</label>
                         <div class="col-md-6">
-                            <select class="form-control"  id="existingMetaProfile" name="existingMetaProfile" ng-model="existingMetaProfile" ng-change="updateProfile()" ng-options="c.name for c in existingMetaProfileOptions">
+                            <select class="form-control input-sm"  id="existingMetaProfile" name="existingMetaProfile" ng-model="existingMetaProfile" ng-change="updateProfile()" ng-options="c.name for c in existingMetaProfileOptions">
                             </select>
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
-            <div class="row panel-padding">          <!--Skelition Parameters Block-->
+            <div class="row panel-padding">          <!--Workflow Parameters Block-->
                 <div class="panel panel-success">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Skeleton Parameters</h3>
-                    </div>
+                    <div class="panel-heading panel-heading-mod">
+                        <div class="panel-title panel-title-mod row">
+                            <div class="col-md-6">Workflow Parameters</div>
+                            <div class=" col-md-6">
+                                <div class="btn-group btn-group-xs  button-group-xs-mod pull-right">
+                                <div class="btn-group btn-group-xs ">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-toggle="tooltip"  title="Load saved Profile"><span class="btn-fixed-width">{{workflowParams.name}}<span class="caret"></span></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li ng-repeat="(key,c) in existingWorkflowProfileOptions"><a href="" ng-click="updateWorkflowParams(c)">{{key}}</a></li>
+                                    </ul>
+                                </div>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#workflowModel" data-toggle="tooltip" title="Save"><span class="glyphicon glyphicon-save icon-success"></span></button>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newWorkflowModel" data-toggle="tooltip"  title="Save as new profile">New</span></button>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#workflowModel" data-toggle="tooltip" title="Add new parameter"><span class="glyphicon glyphicon-plus icon-success"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
                     <div class="panel-body">
-                        <div class="form-group col-md-6">
-                            <label for="analyticsWorkflow" class="col-md-4 control-label">Analytics Workflow</label>
-                            <div class="col-md-8">
-                                <select class="form-control"  id="analyticsWorkflow" name="analyticsWorkflow" ng-model="analyticsWorkflow" ng-options="c.name for c in analyticsWorkflowOptions">
+                        <div class="form-group col-md-4" ng-repeat="param in workflowParams.parameters">
+                            <label for="{{param.name}}" class="col-lg-6 control-label">{{param.label}}</label>
+                            <div class="col-lg-6" ng-if="param.type == 'select'">
+                                <select  class="form-control input-sm"  id="{{param.name}}" name="{{param.name}}" ng-change="updateWorkflow(param)" ng-model="param.value" ng-options="c.name for c in {{param.options}}">
                                 </select>
                             </div>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="dataAnalyticsType" class="col-md-4 control-label">Data Analytics Type</label>
-                            <div class="col-md-8">
-                                <select class="form-control" id="dataAnalyticsType" name="dataAnalyticsType" ng-model="dataAnalyticsType" ng-options="c.name for c in dataAnalyticsTypeOptions">
-                                </select>
+                            <div class="col-lg-6" ng-if="param.type == 'text'">
+                                <div class="input-group input-group-sm"> 
+                                    <input type="{{param.type}}" class="form-control input-sm" id="{{param.name}}" name="{{param.name}}" ng-model="param.value" placeholder="#">
+                                    <span class="input-group-addon" ng-click="removeWorkflowParam(param)">
+                                            <span class="glyphicon glyphicon-remove" ></span>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
+                        </div>                    
                     </div>
                 </div>
             </div> <!--End of Skeleton Parameters Block-->
@@ -42,25 +60,36 @@
             <div class="row">
                 <div class="col-sm-4 panel-padding"> <!--Architecture Parameters Block-->
                     <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <div class="panel-title">Architecture Parameters 
-                                <a data-toggle="modal" href="#archModel" class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-plus icon-success"></span></a>
+                        <div class="panel-heading panel-heading-mod">
+                            <div class="panel-title panel-title-mod row">
+                                <div class="col-md-6">Architecture Parameters </div>
+                                <div class="btn-group btn-group-xs pull-right button-group-xs-mod col-md-6">
+                                    <div class="btn-group btn-group-xs ">
+                                        <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" data-toggle="tooltip"  title="Load saved Profile"><span class="btn-fixed-width">{{archParams.name}}<span class="caret"></span></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li ng-repeat="(key,c) in existingArchProfileOptions"><a href="" ng-click="updateArchParams(c)">{{key}}</a></li>
+                                        </ul>
+                                    </div>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#archModel" data-toggle="tooltip"  title="Save"><span class="glyphicon glyphicon-save icon-success"></span></button>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newArchModel" data-toggle="tooltip"  title="Save as new profile">New</span></button>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#archModel" data-toggle="tooltip"  title="Add new parameter"><span class="glyphicon glyphicon-plus icon-success"></span></button>
+                                </div>
                             </div>
                         </div>
                         <div class="panel-body panel-scroll">                         
-                            <div class="form-group" ng-repeat="param in archParams">
+                            <div class="form-group" ng-repeat="param in archParams.parameters">
                                 <label for="{{param.name}}" class="col-lg-6 control-label">{{param.label}}</label>
                                 <div class="col-lg-6" ng-if="param.type == 'text'">
-                                    <div class="input-group"> 
-                                        <input type="{{param.type}}" class="form-control" id="{{param.name}}" name="{{param.name}}" ng-model="param.value" placeholder="#">
+                                    <div class="input-group input-group-sm"> 
+                                        <input type="{{param.type}}" class="form-control input-sm" id="{{param.name}}" name="{{param.name}}" ng-model="param.value" placeholder="#">
                                         <span class="input-group-addon" ng-click="removeArchParam(param)">
                                             <span class="glyphicon glyphicon-remove" ></span>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="col-lg-6" ng-if="param.type == 'radio'">
-                                    <label class="" ng-repeat="option in param.options">
-                                        <input type="{{param.type}}" name="{{param.name}}" id="{{param.name}}" ng-model="param.value" value="{{option.name}}"> {{option.name}}
+                                    <label class="control-label" ng-repeat="option in param.options">
+                                        <input class="form-control " type="{{param.type}}" name="{{param.name}}" id="{{param.name}}" ng-model="param.value" value="{{option.name}}"> {{option.name}}
                                     </label>
                                 </div>
                             </div>
@@ -71,63 +100,106 @@
                 </div><!--End of Architecture Parameters-->
                 <div class="col-sm-4 panel-padding">            <!--Start of Runtime Params-->
                     <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <div class="panel-title">Runtime Parameters
-                                <a data-toggle="modal" href="#runtimeModel" class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-plus icon-success"></span></a>
+                        <div class="panel-heading panel-heading-mod">
+                            <div class="panel-title panel-title-mod row">
+                                <div class="col-md-6 ">Runtime Parameters</div>
+                                <div class="btn-group btn-group-xs pull-right col-md-6 button-group-xs-mod">
+                                    <div class="btn-group btn-group-xs">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-toggle="tooltip"  title="Load saved Profile"><span class="btn-fixed-width">{{runtimeParams.name}}<span class="caret"></span></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li ng-repeat="(key,c) in runtimeParamsOptions"><a href="" ng-click="updateRuntimeParams(c)">{{key}}</a></li>
+                                        </ul>
+                                    </div>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#runtimeModel" data-toggle="tooltip"  title="Save"><span class="glyphicon glyphicon-save icon-success"></span></button>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newRuntimeModel" data-toggle="tooltip"  title="Save as new profile">New</button>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#runtimeModel"  data-toggle="tooltip"  title="Add new parameter"><span class="glyphicon glyphicon-plus icon-success"></span></button>
+                                </div>
                             </div>
                         </div>
                         <div class="panel-body panel-scroll">
-                            <div class="form-group" ng-repeat="param in runtimeParams">
-                                <label for="{{param.name}}" class="col-lg-6 control-label">{{param.label}}</label>
-                                <div class="col-lg-6" ng-if="param.type == 'text'">
-                                    <div class="input-group">
-                                        <input type="{{param.type}}" value="0" class="form-control" id="{{param.name}}" name="{{param.name}}" ng-model="param.value" placeholder="#">
-                                        <span class="input-group-addon" >
-                                            <span class="glyphicon glyphicon-remove" ng-click="removeCoDesignParam(param)"></span>
-                                        </span>
+
+                            <ul id="simTab" class="nav nav-tabs nav-mod">
+                                <li  class="{{pillStyle($first)}}" ng-repeat="(key,p) in runtimeParams" name="{{key}}" id="{{key}}"><a href="#{{p.tagName}}" data-toggle="tab">{{p.name}}</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane {{pillStyle($first)}} tab-pane-mod" ng-repeat="(key,p) in runtimeParams" id="{{p.tagName}}">
+                                    <div class="form-group" ng-repeat="param in p.parameters">
+                                        <label for="{{param.name}}" class="col-lg-6 control-label">{{param.label}}</label>
+                                        <div class="col-lg-6" ng-if="param.type == 'text'">
+                                            <div class="input-group input-group-sm">
+                                                <input type="{{param.type}}" value="0" class="form-control input-sm" id="{{param.name}}" name="{{param.name}}" ng-model="param.value" placeholder="#">
+                                                <span class="input-group-addon" >
+                                                    <span class="glyphicon glyphicon-remove" ng-click="removeRuntimeParam(param)"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                        <div class="col-lg-6 radio" ng-if="param.type == 'radio'">
+                                            <label class="control-label" ng-repeat="option in param.options">
+                                                <input class="form-control " type="{{param.type}}" name="{{param.name}}" id="{{param.name}}" ng-model="param.value" value="{{option.name}}"> {{option.name}}
+                                            </label>
+                                        </div>
+                                            </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6" ng-if="param.type == 'radio'">
-                                    <label class="" ng-repeat="option in param.options">
-                                        <input type="{{param.type}}" name="{{param.name}}" id="{{param.name}}" ng-model="param.value" value="{{option.name}}"> {{option.name}}
-                                    </label>
-                                </div>
+                                </div>  
+
                             </div>
+
                         </div>
                     </div>
 
                 </div><!--End of Runtime Parameters-->
                 <div class="col-sm-4 panel-padding"> <!--Start of Application Params-->
                     <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <div class="panel-title">Application Parameters
-                                <a data-toggle="modal" href="#appModel" class="btn btn-default btn-xs pull-right"><span class="glyphicon glyphicon-plus icon-success"></span></a>
+                        <div class="panel-heading panel-heading-mod">
+                            <div class="panel-title panel-title-mod row">
+                                <div class="col-md-6 ">Application Parameters </div>
+                                <div class="btn-group btn-group-xs pull-right col-md-6 button-group-xs-mod">
+                                    <div class="btn-group btn-group-xs">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-toggle="tooltip"  title="Load saved Profile"><span class="btn-fixed-width">{{appParams.name}}<span class="caret"></span></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li ng-repeat="(key,c) in appParamsOptions"><a href="" ng-click="updateAppParams(c)">{{key}}</a></li>
+                                        </ul>
+                                    </div>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#appModel" data-toggle="tooltip"  title="Save"><span class="glyphicon glyphicon-save icon-success"></span></button>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#newAppModel" data-toggle="tooltip"  title="Save as new profile">New</button>
+                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#appModel" data-toggle="tooltip"  title="Add new parameter"><span class="glyphicon glyphicon-plus icon-success"></span></button>
+                                </div>
                             </div>
                         </div>
                         <div class="panel-body panel-scroll">
-                            <div class="form-group" ng-repeat="param in appParams">
-                                <label for="{{param.name}}" class="col-lg-6 control-label">{{param.label}}</label>
-                                <div class="col-lg-6">
-                                    <div class="input-group">
-                                        <input type="{{param.type}}" value="0" class="form-control" id="{{param.name}}" name="{{param.name}}" ng-model="param.value" placeholder="#">
-                                        <span class="input-group-addon" >
-                                            <span class="glyphicon glyphicon-remove" ng-click="removeAppParam(param)"></span>
-                                        </span>
+                            <ul id="appTab" class="nav nav-tabs nav-mod">
+                                <li  class="{{pillStyle($first)}}" ng-repeat="(key,p) in appParams" name="{{key}}" id="{{key}}"><a href="#{{p.tagName}}" data-toggle="tab">{{p.name}}</a></li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane {{pillStyle($first)}} tab-pane-mod" ng-repeat="(key,p) in appParams" id="{{p.tagName}}">
+                                    <div class="form-group" ng-repeat="param in p.parameters">
+                                        <label for="{{param.name}}" class="col-lg-6 control-label">{{param.label}}</label>
+                                        <div class="col-lg-6">
+                                            <div class="input-group input-group-sm">
+                                                <input type="{{param.type}}" value="0" class="form-control input-sm" id="{{param.name}}" name="{{param.name}}" ng-model="param.value" placeholder="#">
+                                                <span class="input-group-addon" >
+                                                    <span class="glyphicon glyphicon-remove" ng-click="removeAppParam(param)"></span>
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
+                            </div>    
                             <div class="form-group">
                                 <label for="mpiActivityFile" class="col-lg-6 control-label">MPI Activity File</label>
                                 <div class="col-lg-6">
                                     <div class="input-group">
-                                        <input type="file" id="mpiActivityFile" name="mpiActivityFile" ng-model="mpiActivityFile">
+                                        <input  type="file" id="mpiActivityFile" name="mpiActivityFile" ng-model="mpiActivityFile">
                                         <p class="help-block">(Source_MPI_Rank, Destination_MPI_Rank, data_size)</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-offset-6">
-
                             </div>
                         </div>
                     </div><!--End of Application Parameter-->
@@ -143,15 +215,15 @@
                         <div class="col-md-4 success">
                             {{opmessage}}
                         </div>  
-                        
+
                     </div>
                 </div><!--End of User Action Params-->
             </div>
         </form>
         <div class="row">           <!-- Start of Results Section-->
             <div class="panel panel-success">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Results</h3>
+                <div class="panel-heading panel-heading-mod">
+                    <h3 class="panel-title panel-title-mod">Results</h3>
                 </div>
                 <div class="panel-body">
                     <div class="simulationResult"></div>
@@ -159,6 +231,51 @@
 
             </div>
         </div><!--End of Results Section-->
+        
+        <div class="modal fade" id="workflowModel" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">New Workflow Parameter</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="newWorkflowLabel" class="col-lg-6 control-label">New Parameter Label : </label>
+                            <div class="col-lg-6">
+                                <input class="form-control input-sm" type="text" ng-model="newWorkflowLabel"  id="newWorkflowLabel" name="newWorkflowLabel" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="addWorkflowParam()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="newWorkflowModel" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">New Workflow Profile</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="newWorkflowName" class="col-lg-6 control-label">Name : </label>
+                            <div class="col-lg-6">
+                                <input class="form-control input-sm" type="text" ng-model="newWorkflowName"  id="newWorkflowName" name="newWorkflowName" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="newWorkflow()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="modal fade" id="archModel" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -171,13 +288,36 @@
                         <div class="form-group">
                             <label for="newArchLabel" class="col-lg-6 control-label">New Parameter Label : </label>
                             <div class="col-lg-6">
-                                <input type="newArchLabel" ng-model="newArchLabel"  id="newArchLabel" name="newArchLabel" placeholder="">
+                                <input class="form-control input-sm" type="text" ng-model="newArchLabel"  id="newArchLabel" name="newArchLabel" placeholder="">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" ng-click="addArchParam()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="newArchModel" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">New Architecture</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="newArchName" class="col-lg-6 control-label">Name : </label>
+                            <div class="col-lg-6">
+                                <input class="form-control input-sm" type="text" ng-model="newArchName"  id="newArchName" name="newArchName" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="newArch()">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -194,13 +334,35 @@
                         <div class="form-group">
                             <label for="newruntimeLabel" class="col-lg-6 control-label">New Parameter Label : </label>
                             <div class="col-lg-6">
-                                <input type="newruntimeLabel" ng-model="newruntimeLabel"  id="newArchLabel" name="newruntimeLabel" placeholder="">
+                                <input class="form-control input-sm" type="text" ng-model="newruntimeLabel"  id="newArchLabel" name="newruntimeLabel" placeholder="">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" ng-click="addCoDesignParam()">Save changes</button>
+                        <button type="button" class="btn btn-primary" ng-click="addRuntimeParam()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="newRuntimeModel" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">New Runtime Profile</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="newRuntimeName" class="col-lg-6 control-label">Name : </label>
+                            <div class="col-lg-6">
+                                <input class="form-control input-sm" type="text" ng-model="newRuntimeName"  id="newRuntimeName" name="newRuntimeName" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="newRuntime()">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -217,13 +379,35 @@
                         <div class="form-group">
                             <label for="newAppLabel" class="col-lg-6 control-label">New Parameter Label : </label>
                             <div class="col-lg-6">
-                                <input type="newAppLabel" ng-model="newAppLabel"  id="newArchLabel" name="newAppLabel" placeholder="">
+                                <input class="form-control input-sm" type="text" ng-model="newAppLabel"  id="newArchLabel" name="newAppLabel" placeholder="">
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="button" class="btn btn-primary" ng-click="addAppParam()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="newAppModel" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">New Application Profile</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="newAppName" class="col-lg-6 control-label">Name : </label>
+                            <div class="col-lg-6">
+                                <input class="form-control input-sm" type="text" ng-model="newAppName"  id="newArchName" name="newAppName" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="newApp()">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -239,7 +423,7 @@
                         <div class="form-group">
                             <label for="newskeletonName" class="col-lg-6 control-label">New Meta Skeleton Profile Name: </label>
                             <div class="col-lg-6">
-                                <input type="newskeletonName" ng-model="newskeletonName"  id="newskeletonName" name="newskeletonName" placeholder="">
+                                <input class="form-control input-sm" type="text" ng-model="newskeletonName"  id="newskeletonName" name="newskeletonName" placeholder="">
                             </div>
                         </div>
                     </div>

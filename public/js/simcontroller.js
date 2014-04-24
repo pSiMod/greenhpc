@@ -136,7 +136,7 @@ simapp.controller('paramsCtrl', function($scope, $http) {
         $http.get(url).success(function(data) {
 
             $scope.workflowParams = data["workflowParams"];
-
+ 
             $scope.workflowParams.parameters[0].value = $scope.searchValue($scope.analyticsWorkflowOptions, $scope.workflowParams.parameters[0].value);
             $scope.workflowParams.parameters[1].value = $scope.searchValue($scope.dataAnalyticsTypeOptions, $scope.workflowParams.parameters[1].value);
             $scope.workflowParams.parameters[2].value = $scope.searchValue($scope.stagingTypeOptions, $scope.workflowParams.parameters[2].value);
