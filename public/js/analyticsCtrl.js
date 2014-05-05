@@ -89,7 +89,7 @@ simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
     $scope.plotgraph = function(side) {
         $('#chart_div'.concat(side)).html('');
           //$('#loading'.concat(side)).show();
-        var fd = FormData();
+        var fd = new FormData();
         if (side == 'left')
             fd.append('metaProfileName', $scope.existingMetaProfileLeft.name);
         if (side == 'right')
