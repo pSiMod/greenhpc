@@ -88,9 +88,11 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6" ng-if="param.type == 'radio'">
-                                    <label class="control-label" ng-repeat="option in param.options">
-                                        <input class="form-control " type="{{param.type}}" name="{{param.name}}" id="{{param.name}}" ng-model="param.value" value="{{option.name}}"> {{option.name}}
+                                    <div class="radio"  ng-repeat="option in param.options">
+                                    <label class="control-label">
+                                        <input  type="{{param.type}}" name="{{param.name}}" id="{{param.name}}" ng-model="param.value" value="{{option.name}}"> {{option.name}}
                                     </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -135,13 +137,15 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6">
-                                        <div class="col-lg-6 radio" ng-if="param.type == 'radio'">
-                                            <label class="control-label" ng-repeat="option in param.options">
-                                                <input class="form-control " type="{{param.type}}" name="{{param.name}}" id="{{param.name}}" ng-model="param.value" value="{{option.name}}"> {{option.name}}
+                                     
+                                        <div class="col-lg-6" ng-if="param.type == 'radio'">
+                                            <div class="radio" ng-repeat="option in param.options">
+                                            <label class="control-label">
+                                                <input  type="{{param.type}}" name="{{param.name}}" id="{{param.name}}" ng-model="param.value" value="{{option.name}}"> {{option.name}}
                                             </label>
-                                        </div>
                                             </div>
+                                        </div>
+                                    
                                     </div>
                                 </div>  
 

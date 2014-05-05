@@ -11,6 +11,32 @@ function drawChart(arraydata, plotside) {
     chart.draw(data, options);
 }
 
+function drawHighChart(arraydata,plotside)
+{
+    $('#chart_div'.concat(plotside)).highcharts({
+            title: {
+                text:null
+            },
+            
+            xAxis: {
+                title: {
+                    enabled: true,
+                    text: $('#xaxisparams'.concat(plotside)).val()
+                }
+            },
+            yAxis: {
+                title: {
+                    text: $('#yaxisparams'.concat(plotside)).val()
+                }
+              
+            }
+           
+        ,
+              series:arraydata
+        });
+    
+}
+var chartdata=[];
 
 simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
 
@@ -62,7 +88,7 @@ simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
   
     $scope.plotgraph = function(side) {
         $('#chart_div'.concat(side)).html('');
-          $('#loading'.concat(side)).show();
+          //$('#loading'.concat(side)).show();
         var fd = FormData();
         if (side == 'left')
             fd.append('metaProfileName', $scope.existingMetaProfileLeft.name);
@@ -74,7 +100,7 @@ simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
         fd.append('rangestep', $('#rangestep'.concat(side)).val());
         fd.append('yaxisparams', $('#yaxisparams'.concat(side)).val());
 
-        $http.post('/sim/plot', fd,
+        /*$http.post('/sim/plot', fd,
                 {
                     withCredentials: true,
                     headers: {'Content-Type': undefined},
@@ -96,6 +122,25 @@ simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
         }).error(function(e) {
               $('#loading'.concat(side)).hide();
             alert('Error!!. Please try again');
-        });
+        });*/
+        if(side == 'left')
+            {
+        chartdata=[{
+            name: 'Chart ' + side,
+                data: [[0, 19], [10, -10], [20, -56.5], [30, -26.5], [40, -52.1],
+                    [50, -12.5], [60, -2.7], [70, -34.7], [80, -76.5]]
+            }];
+            }
+            else
+                {
+                    chartdata=[{
+            name: 'Chart ' + side,
+                data: [[0, 15], [10, -50], [20, -56.5], [30, -46.5], [40, -22.1],
+                    [50, -2.5], [60, -27.7], [70, -55.7], [80, -76.5]]
+            }];
+            }
+                            
+        drawHighChart(chartdata,side);
+        
     };
 });

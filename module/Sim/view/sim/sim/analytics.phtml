@@ -1,25 +1,27 @@
 <div><div ng-controller="analyticsCtrl">
         <form role="form" action="/sim/analytics" class="form-horizontal" method="POST" enctype="multipart/form-data">
             <div class="row">
+                <!--Left Charting parameters-->
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label for="existingMetaProfile" class="col-md-6 control-label">Meta Skeleton Profiles</label>
                                 <div class="col-md-6">
-                                    <select class="form-control"  id="existingMetaProfile" name="existingMetaProfile" ng-model="existingMetaProfileLeft" ng-options="c.name for c in existingMetaProfileOptions">
+                                    <select class="form-control input-sm"  id="existingMetaProfile" name="existingMetaProfile" ng-model="existingMetaProfileLeft" ng-options="c.name for c in existingMetaProfileOptions">
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="row xaxis-params">
-                        <!--Skelition Parameters Block-->
+                        
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <label for="xaxisparamsleft" class="col-md-4 control-label">X-axis Parameter</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" id="xaxisparamsleft" placeholder="X- axis parameters">
+                                    <select class="form-control input-sm" id="xaxisparamsleft" placeholder="X- axis parameters">
                                         <option value="-1">Please select...</option>
                                         <option value="MPIRanksperNode">MPI Ranks per Node</option>
                                         <option value="FanIn">Fan In</option>
@@ -34,29 +36,29 @@
                                 <div class="col-md-8">
                                     <label for="rangestartleft" class="col-md-2 control-label">From</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="rangestartleft" placeholder="#" value="">
+                                        <input type="text" class="form-control input-sm" id="rangestartleft" placeholder="#" value="">
                                     </div>
 
                                     <label for="rangeendleft" class="col-md-2 control-label">To</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="rangeendleft" placeholder="#" value="">
+                                        <input type="text" class="form-control input-sm" id="rangeendleft" placeholder="#" value="">
                                     </div>
 
                                     <label for="rangestepleft" class="col-md-2 control-label">Step</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="rangestepleft" placeholder="#" value="">
+                                        <input type="text" class="form-control input-sm" id="rangestepleft" placeholder="#" value="">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--End of Skeleton Parameters Block-->
+                       
                     </div>
                     <div class="row yaxis-params">
                         <div class ="row">
                             <div class="form-group col-md-12">
                                 <label for="yaxisparamsleft" class="col-md-4 control-label">Y-axis Parameter</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" id="yaxisparamsleft" placeholder="Y- axis parameters">
+                                    <select class="form-control input-sm" id="yaxisparamsleft" placeholder="Y- axis parameters">
                                         <option  value="0">Please select...</option>
                                         <option value="PercentageLocalCommunication">Percentage Local Communication</option>
                                         <option value="PercentageEnergyforCommunication">Percentage Energy for Communication</option>
@@ -83,19 +85,22 @@
                                 <h3 class="panel-title">Results</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="chart_divleft" style="width: 440px; height: 340px;"></div>
+                                <div id="chart_divleft" style="padding: 0px"></div>
                             </div>
                         </div>
                         </div>
                     </div>
                 </div>
+                  <!--End of Left Charting Params-->
+                  
+                   <!--Start of Right charting params-->
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label for="existingMetaProfileRight" class="col-md-6 control-label">Meta Skeleton Profiles</label>
                                 <div class="col-md-6">
-                                    <select class="form-control"  id="existingMetaProfileRight" name="existingMetaProfileRight" ng-model="existingMetaProfileRight" ng-options="c.name for c in existingMetaProfileOptions">
+                                    <select class="form-control  input-sm"  id="existingMetaProfileRight" name="existingMetaProfileRight" ng-model="existingMetaProfileRight" ng-options="c.name for c in existingMetaProfileOptions">
                                     </select>
                                 </div>
                             </div>
@@ -107,7 +112,7 @@
                             <div class="form-group col-md-12">
                                 <label for="xaxisparamsright" class="col-md-4 control-label">X-axis Parameter</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" id="xaxisparamsright" placeholder="X- axis parameters">
+                                    <select class="form-control  input-sm" id="xaxisparamsright" placeholder="X- axis parameters">
                                         <option   value="0">Please select...</option>
                                         <option value="MPIRanksperNode">MPI Ranks per Node</option>
                                         <option value="FanIn">Fan In</option>
@@ -122,29 +127,29 @@
                                 <div class="col-md-8">
                                     <label for="rangestartright" class="col-md-2 control-label">From</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="rangestartright" placeholder="#" >
+                                        <input type="text" class="form-control  input-sm" id="rangestartright" placeholder="#" >
                                     </div>
 
                                     <label for="rangeendright" class="col-md-2 control-label">To</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="rangeendright" placeholder="#" >
+                                        <input type="text" class="form-control input-sm" id="rangeendright" placeholder="#" >
                                     </div>
 
                                     <label for="rangestepright" class="col-md-2 control-label">Step</label>
                                     <div class="col-md-4">
-                                        <input type="text" class="form-control" id="rangestepright" placeholder="#" >
+                                        <input type="text" class="form-control input-sm" id="rangestepright" placeholder="#" >
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--End of Skeleton Parameters Block-->
+                        
                     </div>
                     <div class="row yaxis-params">
                         <div class ="row">
                             <div class="form-group col-md-12">
                                 <label for="yaxisparamsright" class="col-md-4 control-label">Y-axis Parameter</label>
                                 <div class="col-md-8">
-                                    <select class="form-control" id="yaxisparamsright" placeholder="Y- axis parameters">
+                                    <select class="form-control input-sm" id="yaxisparamsright" placeholder="Y- axis parameters">
                                         <option  value="0">Please select...</option>
                                         <option value="PercentageLocalCommunication">Percentage Local Communication</option>
                                         <option value="PercentageEnergyforCommunication">Percentage Energy for Communication</option>
@@ -171,13 +176,15 @@
                                 <h3 class="panel-title">Results</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="chart_divright" style="width: 440px; height: 340px;"></div>
+                                <div id="chart_divright" style="padding:0px"></div>
                             </div>
                         </div>
                         </div>
                     </div>
-                </div>
+                </div>   
+                   <!--End of Right Charting Params-->
             </div>
+            
             <!--End of Results Section-->
         </form>
     </div>
