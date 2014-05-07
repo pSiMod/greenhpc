@@ -88,7 +88,7 @@ simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
   
     $scope.plotgraph = function(side) {
         $('#chart_div'.concat(side)).html('');
-          //$('#loading'.concat(side)).show();
+        $('#loading'.concat(side)).show();
         var fd = new FormData();
         if (side == 'left')
             fd.append('metaProfileName', $scope.existingMetaProfileLeft.name);
@@ -100,7 +100,7 @@ simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
         fd.append('rangestep', $('#rangestep'.concat(side)).val());
         fd.append('yaxisparams', $('#yaxisparams'.concat(side)).val());
 
-        /*$http.post('/sim/plot', fd,
+        $http.post('/sim/plot', fd,
                 {
                     withCredentials: true,
                     headers: {'Content-Type': undefined},
@@ -114,16 +114,22 @@ simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
             }
             else
             {
-                $scope.arraydata = [[$('#xaxisparams'.concat(side)).val(),$('#yaxisparams'.concat(side)).val()]];
+                //$scope.arraydata = [[$('#xaxisparams'.concat(side)).val(),$('#yaxisparams'.concat(side)).val()]];
+                chartdata = [{
+                       name: 'Chart ' + side,
+                       data:[]
+                }];
                 for(i=0;i<data.output.length;i++)
-                $scope.arraydata.push([parseFloat(data.output[i][0]),parseFloat(data.output[i][1])]);
+                chartdata[0].data.push([parseFloat(data.output[i][0]),parseFloat(data.output[i][1])]);
+                
+                drawHighChart(chartdata,side);
             }
-                drawChart($scope.arraydata, side);
+                
         }).error(function(e) {
               $('#loading'.concat(side)).hide();
             alert('Error!!. Please try again');
-        });*/
-        if(side == 'left')
+        });
+        /*if(side == 'left')
             {
         chartdata=[{
             name: 'Chart ' + side,
@@ -138,9 +144,6 @@ simapp.controller('analyticsCtrl', function($scope, $http, $filter) {
                 data: [[0, 15], [10, -50], [20, -56.5], [30, -46.5], [40, -22.1],
                     [50, -2.5], [60, -27.7], [70, -55.7], [80, -76.5]]
             }];
-            }
-                            
-        drawHighChart(chartdata,side);
-        
+            }*/
     };
 });

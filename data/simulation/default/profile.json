@@ -3,34 +3,34 @@
         "name": "default",
         "parameters": [
             {
-                "name": "analyticsWorkflow",
+                "name": "AnalyticsWorkflow",
                 "label": "Analytics Workflow",
                 "type": "select",
                 "value": {"name": "Topology analytics"},
                 "options": "analyticsWorkflowOptions"
             },
             {
-                "name": "dataAnalyticsType",
+                "name": "DataAnalyticsType",
                 "label": "Data Analytics Type",
                 "type": "select",
                 "value": {"name": "In-situ"},
                 "options": "dataAnalyticsTypeOptions"
             },
             {
-                "name": "stagingType",
+                "name": "Staging",
                 "label": "Staging",
                 "type": "select",
                 "value": {"name": "DRAM"},
                 "options": "stagingTypeOptions"
             },
             {
-                "name": "dataSpeculation",
+                "name": "DataSpeculation",
                 "label": "Data Speculation",
                 "type": "text",
                 "value": "0"
             },
             {
-                "name": "startsAt",
+                "name": "Analysisstartsat",
                 "label": "Analysis starts at",
                 "type": "text",
                 "value": "0"
@@ -112,13 +112,13 @@
             "tagName": "appAnalysis",
             "parameters": [
                 {
-                    "name": "analysisMpiRanksNode",
-                    "label": "MPI Ranks Per Node",
+                    "name": "analysisMPIrankspernode",
+                    "label": "MPI ranks per node",
                     "type": "text",
                     "value": "0"
                 },
                 {
-                    "name": "analysisMpiRankMappingPolicy",
+                    "name": "analysisMPIrankmappingpolicy",
                     "label": "MPI rank mapping Policy",
                     "type": "radio",
                     "options": [
@@ -140,19 +140,19 @@
             "name": "Analysis",
             "tagName": "appAnalysis",
             "parameters": [{
-                    "name": "AnalysisExecutionTime(s)",
+                    "name": "analysisExecutionTime(s)",
                     "label": "Execution Time(s)",
                     "type": "text",
                     "value": "0"
                 },
                 {
-                    "name": "AnalysisIntegerOperations",
+                    "name": "analysisIntegerOperations",
                     "label": "Integer Operations",
                     "type": "text",
                     "value": "0"
                 },
                 {
-                    "name": "AnalysisMemoryOperations",
+                    "name": "analysisMemoryOperations",
                     "label": "Memory Operations",
                     "type": "text",
                     "value": "0"

@@ -190,12 +190,12 @@ class SimController extends AbstractActionController {
 
                     // convert the posted data into comma seperted name:value pairs.
 
-                    $params = $this->convertToParam($_POST);
+                    $jsonparams = $this->convertToJson($_POST);
                     // create a params.dat file which will contain the above generted
                     //value pairs.
-                    $paramsPath .= $dirpath . '/params.dat';
+                    $paramsPath .= $dirpath . '/profile.json';
                     $file = fopen($paramsPath, 'w');
-                    fwrite($file, $params);
+                    fwrite($file, $jsonparams);
                     fclose($file);
 
                     $outputfile = $dirpath . "/output.dat";
@@ -235,10 +235,10 @@ class SimController extends AbstractActionController {
             $simulationpath = $this->simulationDir();
             $dirpath = $simulationpath . '/' . $metaprofile;
             if (is_dir($dirpath)) {
-                $paramsfile = $dirpath . '/params.dat';
+                //$paramsfile = $dirpath . '/params.dat';
 
-                $jsonfile = $dirpath . '/profile.json';
-                $jsonprofile = file_get_contents($jsonfile);
+                $paramsfile = $dirpath . '/profile.json';
+                $jsonprofile = file_get_contents($paramsfile);
                 $arrayprofile = json_decode($jsonprofile);
                 $mpifilename = $arrayprofile->mpiActivityFile;
 
@@ -257,6 +257,8 @@ class SimController extends AbstractActionController {
                 $command = $simlocation . $paramsfile . " " . $mpiFilePath . " " . $outputfile . " ";
                 $command = $command . $xparam . " " . $yparam . " " . $rangestart . " " . $rangeend . " " . $rangestep;
                 $cmdoutput = array();
+                
+                
                 exec($command, $cmdoutput);
                 foreach ($cmdoutput as $line) {
                     $value = explode(':', $line);
@@ -266,7 +268,7 @@ class SimController extends AbstractActionController {
                     
                 }
             } else {
-                $messge = "Profile doesnot exists";
+                $message = "Profile doesnot exists";
             }
         }
         $result = array("message"=> $message,"output"=>$output);

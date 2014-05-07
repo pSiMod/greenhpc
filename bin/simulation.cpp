@@ -7,6 +7,7 @@
 #include <iostream>
 #include <sstream>
 #include <stdlib.h>
+#include <json/json.h>
 
 using namespace std;
 
@@ -297,34 +298,41 @@ int main (int argc, char **argv)
         paramsUsed[i]=0;
     }
     
-    
+     
 	//Read the Prams file until end of file is reached
-    while (!paramsfile.eof()) {
+    //while (!paramsfile.eof()) {
 		
         //Reads the contents of the file until a ',' is encountered
-        getline(paramsfile, paramString, ',');
+      //  getline(paramsfile, paramString, ',');
         
-        vector<string> strings;
-        strings=split(paramString, ':');
+        //vector<string> strings;
+        //strings=split(paramString, ':');
         
         // Key: strings[0].c_str()
         // Value: strings[1].c_str()
-        
-        if(!strings[0].compare("MPIRanksperNode")){
-            mpiRanksNode = atoi(strings[1].c_str());
-            paramsUsed[0]=1;
-        }
-        
-        /*******/
-        
-        
-        if(!strings[0].compare("CoresperNode")){
-            coresPerNode = atoi(strings[1].c_str());
+    
+    Json::Value root;
+    Json::Reader reader;
+    
+    bool parserResult = reader.parse(paramsfile,root);
+    
+    if(!parserResult)
+    {
+        cout<< "Failed to parse the profile information\n";
+        return 1;
+    }
+     
+    Json::Value archParams = root["archParams"]["parameters"];
+    
+    for(int i = 0 ; i< archParams.size(); i++){
+    
+        if(!archParams[i]["name"].asString().compare("CoresperNode")){
+            coresPerNode = atoi(archParams[i]["value"].asCString());
             paramsUsed[1]=1;
         }
         
-        if(!strings[0].compare("CPUCores")){
-            Cores = atoi(strings[1].c_str());
+        if(!archParams[i]["name"].asString().compare("CPUCores")){
+            Cores = atoi(archParams[i]["value"].asCString());
             paramsUsed[2]=1;
         }
         
@@ -339,61 +347,81 @@ int main (int argc, char **argv)
          }
          */
         
-        if(!strings[0].compare("ExecutionTime(s)")){
-            Time = atof(strings[1].c_str());
-            paramsUsed[3]=1;
-        }
+        
         
         /****************/
-        if(!strings[0].compare("IntegerOperations")){
-            Ops = atol(strings[1].c_str());
-            paramsUsed[4]=1;
-        }
-        
-        /****************/
-        if(!strings[0].compare("MemoryOperations")){
-            LdSt = atol(strings[1].c_str());
-            paramsUsed[5]=1;
-        }
-        
-        /****************/
-        if(!strings[0].compare("StaticPower")){
-            staticPower = atoi(strings[1].c_str());
+        if(!archParams[i]["name"].asString().compare("StaticPower")){
+            staticPower = atoi(archParams[i]["value"].asCString());
             paramsUsed[6]=1;
         }
         
         /****************/
-        if(!strings[0].compare("BWNetwork")){
-            BwNet = atol(strings[1].c_str());
+        if(!archParams[i]["name"].asString().compare("BWNetwork")){
+            BwNet = atol(archParams[i]["value"].asCString());
             paramsUsed[7]=1;
         }
         
         /****************/
-        if(!strings[0].compare("BWMemory")){
-            BwMem = atol(strings[1].c_str());
+        if(!archParams[i]["name"].asString().compare("BWMemory")){
+            BwMem = atol(archParams[i]["value"].asCString());
             paramsUsed[8]=1;
         }
         
         /****************/
-        if(!strings[0].compare("PowerNIC")){
-            Pnic = atoi(strings[1].c_str());
+        if(!archParams[i]["name"].asString().compare("PowerNIC")){
+            Pnic = atoi(archParams[i]["value"].asCString());
             paramsUsed[9]=1;
         }
         
         /****************/
-        if(!strings[0].compare("PowerCPU")){
-            Pcpu = atoi(strings[1].c_str());
+        if(!archParams[i]["name"].asString().compare("PowerCPU")){
+            Pcpu = atoi(archParams[i]["value"].asCString());
             paramsUsed[10]=1;
         }
         
         /****************/
-        if(!strings[0].compare("PowerMemory")){
-            Pmem = atoi(strings[1].c_str());
+        if(!archParams[i]["name"].asString().compare("PowerMemory")){
+            Pmem = atoi(archParams[i]["value"].asCString());
             paramsUsed[11]=1;
         }
         
+    }
+    
+    
+    Json::Value analysisRuntimeParam= root["runtimeParams"]["analysis"]["parameters"];
+    
+    for(int i =0 ; i < analysisRuntimeParam.size();i++)
+    {
+        //cout<<analysisRuntimeParam[i]["name"].asString()<<"\n";
+        if(!analysisRuntimeParam[i]["name"].asString().compare("analysisMPIrankspernode")){
+            mpiRanksNode = atoi(analysisRuntimeParam[i]["value"].asCString());
+            paramsUsed[0]=1;
+        }
+    }
+    
+    Json::Value analysisAppParam= root["appParams"]["analysis"]["parameters"];
+    
+    for(int i =0 ; i < analysisAppParam.size();i++)
+    {
+        //cout<<analysisAppParam[i]["name"].asString()<<"\n";
         
-    } // while(params)
+        if(!analysisAppParam[i]["name"].asString().compare("analysisExecutionTime(s)")){
+            Time = atof(analysisAppParam[i]["value"].asCString());
+            paramsUsed[3]=1;
+        }
+        
+        /****************/
+        if(!analysisAppParam[i]["name"].asString().compare("analysisIntegerOperations")){
+            Ops = atol(analysisAppParam[i]["value"].asCString());
+            paramsUsed[4]=1;
+        }
+        
+        /****************/
+        if(!analysisAppParam[i]["name"].asString().compare("analysisMemoryOperations")){
+            LdSt = atol(analysisAppParam[i]["value"].asCString());
+            paramsUsed[5]=1;
+        }
+    }
     
     int missing=0;
     for(int i=0; i<12;i++){

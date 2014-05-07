@@ -3,7 +3,7 @@
     "name": "default",
     "parameters": [
       {
-        "name": "analyticsWorkflow",
+        "name": "AnalyticsWorkflow",
         "label": "Analytics Workflow",
         "type": "select",
         "value": {
@@ -12,7 +12,7 @@
         "options": "analyticsWorkflowOptions"
       },
       {
-        "name": "dataAnalyticsType",
+        "name": "DataAnalyticsType",
         "label": "Data Analytics Type",
         "type": "select",
         "value": {
@@ -21,7 +21,7 @@
         "options": "dataAnalyticsTypeOptions"
       },
       {
-        "name": "stagingType",
+        "name": "Staging",
         "label": "Staging",
         "type": "select",
         "value": {
@@ -30,66 +30,16 @@
         "options": "stagingTypeOptions"
       },
       {
-        "name": "dataSpeculation",
+        "name": "DataSpeculation",
         "label": "Data Speculation",
         "type": "text",
         "value": "0"
       },
       {
-        "name": "startsAt",
+        "name": "Analysisstartsat",
         "label": "Analysis starts at",
         "type": "text",
         "value": "0"
-      }
-    ]
-  },
-  "New Workflow": {
-    "name": "New Workflow",
-    "parameters": [
-      {
-        "name": "analyticsWorkflow",
-        "label": "Analytics Workflow",
-        "type": "select",
-        "value": {
-          "name": "Simulation, Topo, UQ Analytics"
-        },
-        "options": "analyticsWorkflowOptions"
-      },
-      {
-        "name": "dataAnalyticsType",
-        "label": "Data Analytics Type",
-        "type": "select",
-        "value": {
-          "name": "In-transit"
-        },
-        "options": "dataAnalyticsTypeOptions"
-      },
-      {
-        "name": "stagingType",
-        "label": "Staging",
-        "type": "select",
-        "value": {
-          "name": "SSD"
-        },
-        "options": "stagingTypeOptions"
-      },
-      {
-        "name": "dataSpeculation",
-        "label": "Data Speculation",
-        "type": "text",
-        "value": "100"
-      },
-      {
-        "name": "startsAt",
-        "label": "Analysis starts at",
-        "type": "text",
-        "value": "200"
-      },
-      {
-        "name": "SimulationRate",
-        "label": "Simulation Rate",
-        "type": "text",
-        "value": "23"
       }
     ]
   }

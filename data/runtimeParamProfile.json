@@ -7,14 +7,14 @@
         "tagName": "runAnalysis",
         "parameters": [
           {
-            "name": "analysisMpiRanksNode",
-            "label": "MPI Ranks Per Node",
+            "name": "analysisMPIrankspernode",
+            "label": "MPI ranks per node",
             "type": "text",
             "value": "0"
           },
           {
-            "name": "analysisMpiRankMappingPolicy",
-            "label": "MPI rank mapping Policy",
+            "name": "analysisMPIrankmappingpolicy",
+            "label": "MPI rank mapping policy",
             "type": "radio",
             "options": [
               {
@@ -38,14 +38,14 @@
         "tagName": "runAnalysis",
         "parameters": [
           {
-            "name": "analysisMpiRanksNode",
-            "label": "MPI Ranks Per Node",
+            "name": "analysisMPIrankspernode",
+            "label": "MPI ranks per node",
             "type": "text",
             "value": "0"
           },
           {
-            "name": "analysisMpiRankMappingPolicy",
-            "label": "MPI rank mapping Policy",
+            "name": "analysisMPIrankmappingpolicy",
+            "label": "MPI rank mapping policy",
             "type": "radio",
             "options": [
               {
@@ -64,14 +64,14 @@
         "tagName": "runSimulation",
         "parameters": [
           {
-            "name": "simulationMpiRanksNode",
-            "label": "MPI Ranks Per Node",
+            "name": "simulationMPIrankspernode",
+            "label": "MPI ranks per node",
             "type": "text",
             "value": "0"
           },
           {
-            "name": "simulationMpiRankMappingPolicy",
-            "label": "MPI rank mapping Policy",
+            "name": "simulationMPIrankmappingpolicy",
+            "label": "MPI rank mapping policy",
             "type": "radio",
             "options": [
               {
@@ -95,14 +95,14 @@
         "tagName": "runAnalysis",
         "parameters": [
           {
-            "name": "analysisMpiRanksNode",
-            "label": "MPI Ranks Per Node",
+            "name": "analysisMPIrankspernode",
+            "label": "MPI ranks per node",
             "type": "text",
             "value": "0"
           },
           {
-            "name": "analysisMpiRankMappingPolicy",
-            "label": "MPI rank mapping Policy",
+            "name": "analysisMPIrankmappingpolicy",
+            "label": "MPI rank mapping policy",
             "type": "radio",
             "options": [
               {
@@ -121,14 +121,14 @@
         "tagName": "runSimulation",
         "parameters": [
           {
-            "name": "simulationMpiRanksNode",
-            "label": "MPI Ranks Per Node",
+            "name": "simulationMPIrankspernode",
+            "label": "MPI ranks per node",
             "type": "text",
             "value": "0"
           },
           {
-            "name": "simulationMpiRankMappingPolicy",
-            "label": "MPI rank mapping Policy",
+            "name": "simulationMPIrankmappingpolicy",
+            "label": "MPI rank mapping policy",
             "type": "radio",
             "options": [
               {
@@ -147,14 +147,14 @@
         "tagName": "runUQ",
         "parameters": [
           {
-            "name": "uqmpiRanksNode",
-            "label": "MPI Ranks Per Node",
+            "name": "uqMPIrankspernode",
+            "label": "MPI ranks per node",
             "type": "text",
             "value": "0"
           },
           {
-            "name": "uqmpiRankMappingPolicy",
-            "label": "MPI rank mapping Policy",
+            "name": "uqMPIrankmappingpolicy",
+            "label": "MPI rank mapping policy",
             "type": "radio",
             "options": [
               {
@@ -176,14 +176,14 @@
         "tagName": "runAnalysis",
         "parameters": [
           {
-            "name": "analysisMpiRanksNode",
-            "label": "MPI Ranks Per Node",
+            "name": "analysisMPIrankspernode",
+            "label": "MPI ranks per node",
             "type": "text",
             "value": "0"
           },
           {
-            "name": "analysisMpiRankMappingPolicy",
-            "label": "MPI rank mapping Policy",
+            "name": "analysisMPIrankmappingpolicy",
+            "label": "MPI rank mapping policy",
             "type": "radio",
             "options": [
               {
@@ -208,14 +208,14 @@
         "tagName": "runSimulation",
         "parameters": [
           {
-            "name": "simulationMpiRanksNode",
-            "label": "MPI Ranks Per Node",
+            "name": "simulationMPIrankspernode",
+            "label": "MPI ranks per node",
             "type": "text",
             "value": "0"
           },
           {
-            "name": "simulationMpiRankMappingPolicy",
-            "label": "MPI rank mapping Policy",
+            "name": "simulationMPIrankmappingpolicy",
+            "label": "MPI rank mapping policy",
             "type": "radio",
             "options": [
               {
@@ -240,14 +240,14 @@
         "tagName": "runUQ",
         "parameters": [
           {
-            "name": "uqmpiRanksNode",
-            "label": "MPI Ranks Per Node",
+            "name": "uqMPIrankspernode",
+            "label": "MPI ranks per node",
             "type": "text",
             "value": "0"
           },
           {
-            "name": "uqmpiRankMappingPolicy",
-            "label": "MPI rank mapping Policy",
+            "name": "uqMPIrankmappingpolicy",
+            "label": "MPI rank mapping policy",
             "type": "radio",
             "options": [
               {
