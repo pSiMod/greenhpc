@@ -111,7 +111,7 @@ simapp.controller('paramsCtrl', function($scope, $http) {
 
     $scope.updateWorkflow = function(param) {
 
-        if (param.name == "analyticsWorkflow")
+        if (param.name == "AnalyticsWorkflow")
         {
             $scope.runtimeParamsOptions = $scope.existingRuntimeProfileOptions[param.value.name];
             $scope.runtimeParams = angular.copy($scope.runtimeParamsOptions.default);
